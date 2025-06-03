@@ -49,35 +49,16 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-/* VERTICAL DIVIDERS */
 
-/* shared look */
-.vertical-divider,
-.vertical-divider.wide {
-  background: var(--divider);
-  width: 1px;
-  flex: 0 0 1px;              /* never shrink or grow horizontally */
+
+/* ─── HORIZONTAL DIVIDERS ───────────────────────────────────── */
+.horizontal-divider {
+  width: 100%;
+  height: 1px;                         /* line thickness         */
+  background: var(--divider);          /* same pale-white tint   */
+  margin: 1.25rem 0;                   /* space above & below    */
 }
 
-/* 1️⃣ intro / how-to line  ------------------------------------ */
-[aria-label="About"] {                     /* the <section> with the two paragraphs */
-  display: flex;                           /* put items side-by-side */
-  flex-direction: column;                  /* stack on phones */
-  gap: 1.5rem;
-}
-@media (min-width: 768px) {                /* tablets & up */
-  [aria-label="About"] { flex-direction: row; }
-}
-
-/* 2️⃣ search-vs-results line  --------------------------------- */
-.vertical-divider.wide { display: none; }  /* hide on narrow screens */
-
-@media (min-width: 1024px) {               /* desktop */
-  .vertical-divider.wide {
-    display: block;        /* now visible */
-    align-self: stretch;   /* full container height */
-  }
-}
 
 
 
