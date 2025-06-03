@@ -1,13 +1,13 @@
 /* -------------------------------------------------------------------
-   Polyoxometalate Explorer – search & table rendering logic 
+   Polyoxometalate Explorer – search & table rendering logic
    ------------------------------------------------------------------- */
 
 (() => {
   /**
-   * Configuration (edit only here)
+   * Configuration
    * -----------------------------------------------------------------
-   * linkKey   – the property that becomes a clickable <a> link in the table
-   * dataFile  – primary dataset (all basic POM records)
+   * linkKey   – the property that becomes a clickable <a> link
+   * dataFile  – primary dataset
    */
   const CONFIG = {
     linkKey: document.getElementById('resultsTable').dataset.linkKey || 'pomId',
@@ -23,9 +23,29 @@
     try {
       const response = await fetch(CONFIG.dataFile);
       if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
-      fullDataset = await response.json();
 
-      // Expose globally so details.js can read it
+      // ── normalise the raw dictionary-of-dictionaries ──────────────
+      const raw = await response.json();
+      fullDataset = Object.entries(raw).map(([id, rec]) => {
+        const matBlock = rec['POM Material Formula']
+          ? Object.values(rec['POM Material Formula'])[0]
+          : {};
+        return {
+          pomId: id,
+          formula: rec['POM Formula'] || rec['Molecular Formula'] || '',
+          elements: rec['Contains Elements']
+            ? Object.keys(rec['Contains Elements'])
+            : [],
+          mass: rec['Molecular Mass'] || '',
+          charge: rec['Charge'] ?? '',
+          label: Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
+          material: matBlock['POM Material Formula'] || '',
+          doi: matBlock['DOI'] || ''
+        };
+      });
+      // ───────────────────────────────────────────────────────────────
+
+      // expose for details.js
       window.POM_DATA = fullDataset;
 
       hydrateLabelSelect();
@@ -36,29 +56,6 @@
     }
   }
 
-
- const response = await fetch(CONFIG.dataFile);
- const raw = await response.json();
-
- // convert the dictionary into a flat array the rest of the code expects
- fullDataset = Object.entries(raw).map(([id, rec]) => {
-   const matBlock = rec['POM Material Formula']
-     ? Object.values(rec['POM Material Formula'])[0]
-     : {};
-   return {
-     pomId: id,
-     formula: rec['POM Formula'] || rec['Molecular Formula'] || '',
-     elements: rec['Contains Elements']
-       ? Object.keys(rec['Contains Elements'])
-       : [],
-     mass: rec['Molecular Mass'] || '',
-     charge: rec['Charge'] ?? '',
-     label: Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
-     material: matBlock['POM Material Formula'] || '',
-     doi: matBlock['DOI'] || ''
-   };
- });
-   
   /* -------------------------------
      Populate the "Label" <select>
      -------------------------------*/
@@ -81,9 +78,7 @@
      Form helpers
      -------------------------------*/
   function collectFilters() {
-    const form = document.getElementById('searchForm');
-    const fd = new FormData(form);
-
+    const fd = new FormData(document.getElementById('searchForm'));
     return {
       pomId: fd.get('pomId').trim(),
       formula: fd.get('formula').trim(),
@@ -97,7 +92,6 @@
   }
 
   function matchesFilters(item, f) {
-    // Helper: safe lower‑case string compare
     const contains = (field, value) => String(field || '').toLowerCase().includes(value.toLowerCase());
 
     if (f.pomId && !contains(item.pomId, f.pomId)) return false;
@@ -106,7 +100,7 @@
     if (f.elements.length) {
       const itemEls = Array.isArray(item.elements)
         ? item.elements.map(e => e.toLowerCase())
-        : String(item.elements || '').toLowerCase().split(/[,\s]+/);
+        : String(item.elements || '').toLowerCase().split(/[\\s,]+/);
       for (const el of f.elements) if (!itemEls.includes(el.toLowerCase())) return false;
     }
 
@@ -127,24 +121,23 @@
     const linkKey = CONFIG.linkKey;
     tbody.innerHTML = '';
 
-    const rowsFrag = document.createDocumentFragment();
+    const frag = document.createDocumentFragment();
     dataset.forEach(item => {
       const tr = document.createElement('tr');
-      const elementsCell = Array.isArray(item.elements) ? item.elements.join(', ') : (item.elements || '');
+      const elementsCell = Array.isArray(item.elements) ? item.elements.join(', ') : item.elements || '';
       tr.innerHTML = `
-        <td>${linkKey in item ? `<a href="#" class="details-link" data-id="${item[linkKey]}">${item[linkKey]}</a>` : (item[linkKey] || '')}</td>
-        <td>${item.formula || ''}</td>
+        <td>${linkKey in item ? `<a href="#" class="details-link" data-id="${item[linkKey]}">${item[linkKey]}</a>` : ''}</td>
+        <td>${item.formula}</td>
         <td>${elementsCell}</td>
-        <td>${item.mass ?? ''}</td>
-        <td>${item.charge ?? ''}</td>
-        <td>${item.label ?? ''}</td>
-        <td>${item.material ?? item.materialFormula ?? ''}</td>
-        <td>${item.doi ?? ''}</td>
+        <td>${item.mass}</td>
+        <td>${item.charge}</td>
+        <td>${item.label}</td>
+        <td>${item.material}</td>
+        <td>${item.doi}</td>
       `;
-      rowsFrag.appendChild(tr);
+      frag.appendChild(tr);
     });
-
-    tbody.appendChild(rowsFrag);
+    tbody.appendChild(frag);
   }
 
   /* -------------------------------
@@ -152,21 +145,14 @@
      -------------------------------*/
   function bindFormEvents() {
     const form = document.getElementById('searchForm');
-    if (!form) return;
-
-    form.addEventListener('submit', ev => {
-      ev.preventDefault();
+    form.addEventListener('submit', e => {
+      e.preventDefault();
       const filters = collectFilters();
-      const filtered = fullDataset.filter(item => matchesFilters(item, filters));
-      renderTable(filtered);
+      renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
     });
-
-    form.addEventListener('reset', () => {
-      // allow reset to finish, then re-render everything
-      setTimeout(() => renderTable(fullDataset), 0);
-    });
+    form.addEventListener('reset', () => setTimeout(() => renderTable(fullDataset), 0));
   }
 
-  /* Kick things off */
+  /* Kick it off */
   document.addEventListener('DOMContentLoaded', init);
 })();
