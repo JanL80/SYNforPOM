@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------
-   Polyoxometalate Explorer – global stylesheet (v2, fixes applied)
+   Polyoxometalate Explorer – global stylesheet  (v3 – scroll & sizing fixes)
    ------------------------------------------------------------- */
 
 :root {
@@ -41,9 +41,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Vertical divider --------------------------------------------- */
 .vertical-divider {
-  width: 1px;
+  width: 1px;                  /* thin vertical bar */
   background: var(--divider);
-  align-self: stretch;
+  align-self: stretch;         /* fill parent height when in flex‑row   */
 }
 @media (max-width: 767px) { .vertical-divider { display: none; } }
 
@@ -95,26 +95,34 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 .btn-close:hover { color: #ff8080; }
 
 /* --- Scrollable results area -------------------------------------- */
+/*
+   Ensure your HTML wraps the <table id="resultsTable"> with:
+     <div class="table-scroll"> … </div>
+   (Replace the previous .overflow-x-auto wrapper.)
+*/
 .table-scroll {
-  max-height: 70vh;         /* adjust as needed */
-  overflow-y: auto;         /* vertical scrollbar */
-  overflow-x: auto;         /* horizontal when wide */
+  max-height: 70vh;            /* vertical viewport slice */
+  overflow-y: auto;            /* vertical scroll */
+  overflow-x: auto;            /* horizontal scroll when table wider */
+  width: 100%;
 }
 
 /* --- Table --------------------------------------------------------- */
 #resultsTable {
-  width: 100%;
+  width: max-content;          /* grow to fit columns; triggers x‑scroll */
+  min-width: 100%;             /* but never smaller than the wrapper */
   border-collapse: collapse;
-  table-layout: auto;       /* let columns auto‑size */
+  table-layout: auto;          /* adaptive column sizing */
   font-size: 0.875rem;
 }
 
-/* sticky header */
+/* Sticky header */
 #resultsTable thead th {
   position: sticky;
   top: 0;
   z-index: 2;
   background: rgba(255, 255, 255, 0.10);
+  white-space: nowrap;         /* keep labels on one line */
 }
 
 #resultsTable th,
@@ -122,7 +130,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   padding: 0.5rem 0.75rem;
   text-align: left;
   vertical-align: top;
-  word-break: break-word;   /* wrap long tokens inside cells */
+  white-space: nowrap;         /* prevent squeezing onto multiple lines */
 }
 #resultsTable tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.05);
@@ -131,9 +139,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   color: #c6e2ff;
   text-decoration: underline;
 }
-
-/* wrap long tables inside small screens */
-.overflow-x-auto { overflow-x: auto; }
 
 /* --- Popup <dialog> ------------------------------------------------ */
 dialog {
