@@ -26,17 +26,19 @@
   <main class="container mx-auto flex flex-col gap-6 px-4 lg:gap-8">
     <!-- Intro & how‑to text sit side‑by‑side on large screens, stacked on mobile -->
     <section class="flex-1 space-y-6" aria-label="About">
-      <p id="introText" class="intro editable-text" data-edit="intro">
-        <!-- Short introduction – replace with your own copy. -->
-        Welcome! Use this page to explore curated Polyoxometalate (POM) structures.
+      <p id="introText" class="intro editable-text text-center" data-edit="intro">
+        We extracted synthesis procedure information using a large language model (LLM), 
+        stored it in JSON format, and are now displaying our curated data on the search page. 
+        We also provide functionality to regenerate the original synthesis text in all 
+        natural languages via an LLM API.
       </p>
 
       <!-- Horizontal divider between intro & how‑to on mobile -->
       <div class="horizontal-divider lg:hidden"></div>
 
-      <p id="howToUseText" class="how-to editable-text" data-edit="howto">
-        <!-- Instructions placeholder – replace with your own guide. -->
-        Fill in any of the fields below to filter the dataset; leave fields blank to see everything.
+      <p id="howToUseText" class="how-to editable-text text-center" data-edit="howto">
+        Fill in any of the fields below to filter the dataset.
+        Leave the fields blank to see all entries.
       </p>
     </section>
 
@@ -83,6 +85,8 @@
     </section>
   </main>
 
+  <br>
+  
   <!-- 🔹 horizontal rule between filters and results -->
   <div class="horizontal-divider"></div>
 
