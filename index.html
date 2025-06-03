@@ -20,6 +20,9 @@
     <h1 id="pageTitle" class="text-4xl font-bold">Polyoxometalate Explorer</h1>
   </header>
 
+  <!-- 🔹 horizontal rule under headline -->
+  <div class="horizontal-divider"></div>
+
   <main class="container mx-auto flex flex-col gap-6 px-4 lg:flex-row lg:gap-8">
     <!-- Intro & how‑to text sit side‑by‑side on large screens, stacked on mobile -->
     <section class="flex-1 space-y-6" aria-label="About">
@@ -28,17 +31,18 @@
         Welcome! Use this page to explore curated Polyoxometalate (POM) structures.
       </p>
 
-      <br>
-      <!-- Vertical divider (styled as a thin line via CSS) -->
-      <div class="vertical-divider" aria-hidden="true"></div>
-      
+      <!-- Horizontal divider between intro & how‑to on mobile -->
+      <div class="horizontal-divider lg:hidden"></div>
+
       <p id="howToUseText" class="how-to editable-text" data-edit="howto">
         <!-- Instructions placeholder – replace with your own guide. -->
         Fill in any of the fields below to filter the dataset; leave fields blank to see everything.
       </p>
     </section>
 
-    <br><br><br><br><br><br><br><br><br>
+    <!-- Horizontal divider between about block and search filters on mobile -->
+    <div class="horizontal-divider lg:hidden"></div>
+
     <!-- Search form / filters -->
     <section class="flex-1" aria-label="Search form">
       <form id="searchForm" class="space-y-4" autocomplete="off">
@@ -80,6 +84,9 @@
       </form>
     </section>
   </main>
+
+  <!-- 🔹 horizontal rule between filters and results -->
+  <div class="horizontal-divider"></div>
 
   <!-- Secondary vertical divider separates filters from results on wide viewports -->
   <div class="vertical-divider wide" aria-hidden="true"></div>
