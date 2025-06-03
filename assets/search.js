@@ -114,7 +114,7 @@
   }
 
   /* -------------------------------
-     Render table rows
+     Render table rows 
      -------------------------------*/
   function renderTable(dataset) {
     const tbody = document.querySelector('#resultsTable tbody');
