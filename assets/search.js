@@ -36,6 +36,29 @@
     }
   }
 
+
+ const response = await fetch(CONFIG.dataFile);
+ const raw = await response.json();
+
+ // convert the dictionary into a flat array the rest of the code expects
+ fullDataset = Object.entries(raw).map(([id, rec]) => {
+   const matBlock = rec['POM Material Formula']
+     ? Object.values(rec['POM Material Formula'])[0]
+     : {};
+   return {
+     pomId: id,
+     formula: rec['POM Formula'] || rec['Molecular Formula'] || '',
+     elements: rec['Contains Elements']
+       ? Object.keys(rec['Contains Elements'])
+       : [],
+     mass: rec['Molecular Mass'] || '',
+     charge: rec['Charge'] ?? '',
+     label: Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
+     material: matBlock['POM Material Formula'] || '',
+     doi: matBlock['DOI'] || ''
+   };
+ });
+   
   /* -------------------------------
      Populate the "Label" <select>
      -------------------------------*/
