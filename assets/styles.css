@@ -149,7 +149,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 #resultsTable tbody tr {
   display: table;
   width: 100%;
-  table-layout: auto;    /* every column keeps the same width       */
+  table-layout: fixed;    /* every column keeps the same width       */
 }
 
 
