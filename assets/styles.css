@@ -1,11 +1,10 @@
-/* -------------------------------------------------------------
-   Polyoxometalate Explorer – global stylesheet  (v3 – scroll & sizing fixes)
-   ------------------------------------------------------------- */
+
+
 
 :root {
-  --bg-marine: #0b3d91;                 /* deep marine‑blue */
+  --bg: #0077A7;                 /* background color */
   --white: #ffffff;
-  --divider: rgba(255, 255, 255, 0.25); /* subtle line colour */
+  --divider: rgba(255, 0, 0, 0.25);     /* subtle line colour */
 }
 
 
@@ -17,7 +16,7 @@ html, body {
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--white);
-  background: var(--bg-marine);
+  background: var(--bg);
 }
 
 
@@ -33,6 +32,7 @@ html, body {
 .gap-8 { gap: 2rem; }
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
+.text-center { text-align: center; }
 
 @media (min-width: 1024px) {
   .lg\:flex-row { flex-direction: row; }
@@ -54,8 +54,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   align-self: stretch;         /* fill parent height when in flex‑row   */
 }
 @media (max-width: 767px) { .vertical-divider { display: none; } }
-
-
 
 
 
@@ -86,7 +84,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   color: #000;
 }
 #searchForm input::placeholder { color: #666; }
-
 
 
 
@@ -121,7 +118,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-
 /* --- Scrollable results area -------------------------------------- */
 /*
    Ensure your HTML wraps the <table id="resultsTable"> with:
@@ -134,7 +130,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   overflow-x: auto;            /* horizontal scroll when table wider */
   width: 100%;
 }
-
 
 
 
@@ -173,18 +168,16 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-
 /* --- Popup <dialog> ------------------------------------------------ */
 dialog {
   border: none;
-  background: var(--bg-marine);
+  background: var(--bg);
   color: var(--white);
   border-radius: 8px;
 }
 dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 
-
-/* ── Popup look & stacking order ─────────────────────────────── */
+/* --- Popup look & stacking order ------------------------------------------------ */
 #detailsPopup {
   background: #ffffff;            /* solid white panel */
   color: #000000;                 /* dark text so it’s readable */
@@ -195,4 +188,5 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
   max-width: 90vw;     /* safety on tiny screens */
   overflow-x: hidden;  /* prevent sideways spill */ 
 }
+
 
