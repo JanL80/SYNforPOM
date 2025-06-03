@@ -1,5 +1,5 @@
 /* -------------------------------------------------------------------
-   Polyoxometalate Explorer – search & table rendering logic
+   Polyoxometalate Explorer – search & table rendering logic 
    ------------------------------------------------------------------- */
 
 (() => {
