@@ -67,7 +67,7 @@
 
   /* ---------------- Show spinner + loading text ------------------- */
   function showLoading(recordId) {
-    titleEl.textContent = `POM ${recordId}`;
+    titleEl.textContent = `${recordId}`;
     contentEl.innerHTML = '<div class="spinner"></div><p class="loading-text">Synthesis procedure is being generated…</p>';
   }
 
