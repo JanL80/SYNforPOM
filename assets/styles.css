@@ -2,9 +2,9 @@
 
 
 :root {
-  --bg: #0077A7;                 /* background color */
+  --bg: #153f61;                        /* background color */
   --white: #ffffff;
-  --divider: rgba(255, 0, 0, 0.25);     /* subtle line colour */
+  --divider: rgba(0, 0, 0, 0.25);       /* subtle line colour */
 }
 
 
