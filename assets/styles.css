@@ -122,6 +122,38 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 /* Scroll wrapper on narrow screens */
 .overflow-x-auto { overflow-x: auto; }
 
+
+
+/* ───── Scrollable results box ───────────────────────────── */
+.table-scroll {
+  /* keeps the table in a “window” 70 % of the viewport tall   */
+  max-height: 70vh;
+  overflow: auto;        /* both x- & y-scrollbars appear as needed */
+}
+
+/* Keep the <thead> frozen while tbody scrolls */
+#resultsTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;            /* sit above the rows while scrolling      */
+  background: rgba(255, 255, 255, 0.10); /* match your header tint   */
+}
+
+/* Make tbody a block so only its rows scroll, not the header */
+#resultsTable tbody {
+  display: block;
+}
+
+/* Keep columns aligned (fixed-layout table) */
+#resultsTable thead,
+#resultsTable tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;    /* every column keeps the same width       */
+}
+
+
+
 /* Popup (<dialog>) */
 dialog {
   border: none;
