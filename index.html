@@ -2,71 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Polyoxometalate Data Explorer</title>
-  <style>
-    body {
-      background-color: #1F305E; /* RAL 5003 Sapphire Blue */
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      line-height: 1.6;
-    }
-    a {
-      color: #FFD700; /* High-contrast link color */
-      text-decoration: underline;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-    p {
-      font-size: 1.125rem;
-      margin-top: 0;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-    .resources {
-      text-align: center;
-      margin-top: 1rem;
-    }
-    .resource-item {
-      margin-bottom: 1rem;
-    }
-    .gif-container {
-      margin-top: 2rem;
-      text-align: center;
-    }
-  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polyoxometalate Explorer</title>
+
+  <!-- Global layout/utility styles (you will style these in assets/styles.css) -->
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <!-- Search logic + UI helpers -->
+  <script defer src="assets/search.js"></script>
+  <!-- Pop‑up/Netlify request helper (see brief at bottom of file) -->
+  <script defer src="assets/details.js"></script>
 </head>
 <body>
-  <h1>Welcome to POM-Hub!</h1>
-  <br>
-  <p>
-    <div class="gif-container">
-      <br><br>
-      <img src="furret.gif" alt="ONE Furret">
+  <!-- ‑‑‑ Header & intro copy ‑‑‑ -->
+  <header class="container mx-auto py-6 text-center">
+    <h1 id="pageTitle" class="text-4xl font-bold">Polyoxometalate Explorer</h1>
+  </header>
+
+  <main class="container mx-auto flex flex-col gap-6 px-4 lg:flex-row lg:gap-8">
+    <!-- Intro & how‑to text sit side‑by‑side on large screens, stacked on mobile -->
+    <section class="flex-1 space-y-6" aria-label="About">
+      <p id="introText" class="intro editable-text" data-edit="intro">
+        <!-- Short introduction – replace with your own copy. -->
+        Welcome! Use this page to explore curated Polyoxometalate (POM) structures.
+      </p>
+
+      <!-- Vertical divider (styled as a thin line via CSS) -->
+      <div class="vertical-divider" aria-hidden="true"></div>
+
+      <p id="howToUseText" class="how-to editable-text" data-edit="howto">
+        <!-- Instructions placeholder – replace with your own guide. -->
+        Fill in any of the fields below to filter the dataset; leave fields blank to see everything.
+      </p>
+    </section>
+
+    <!-- Search form / filters -->
+    <section class="flex-1" aria-label="Search form">
+      <form id="searchForm" class="space-y-4" autocomplete="off">
+        <fieldset class="space-y-2">
+          <legend class="sr-only">Search Polyoxometalates</legend>
+
+          <label for="searchId">POM‑ID</label>
+          <input type="text" id="searchId" name="pomId" placeholder="e.g. POM_XIFU">
+
+          <label for="searchFormula">Formula</label>
+          <input type="text" id="searchFormula" name="formula" placeholder="[VO3]−">
+
+          <label for="searchElements">Elements (comma‑separated)</label>
+          <input type="text" id="searchElements" name="elements" placeholder="V,O">
+
+          <label for="searchMass">Molecular Mass</label>
+          <input type="number" step="any" id="searchMass" name="mass" placeholder="98.939">
+
+          <label for="searchCharge">Charge</label>
+          <input type="number" step="any" id="searchCharge" name="charge" placeholder="‑3">
+
+          <label for="searchLabel">Label</label>
+          <select id="searchLabel" name="label">
+            <option value="">Any</option>
+            <!-- JS will insert unique label options here at runtime -->
+          </select>
+
+          <label for="searchMaterial">POM Material Formula</label>
+          <input type="text" id="searchMaterial" name="material" placeholder="Ag3(C2)(VO3)">
+
+          <label for="searchDoi">DOI</label>
+          <input type="text" id="searchDoi" name="doi" placeholder="10.1021/acs.inorgchem.9b00264">
+        </fieldset>
+
+        <div class="flex gap-4 pt-2">
+          <button type="submit" class="btn-primary">Search</button>
+          <button type="reset" id="resetButton" class="btn-secondary">Reset</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Secondary vertical divider separates filters from results on wide viewports -->
+  <div class="vertical-divider wide" aria-hidden="true"></div>
+
+  <!-- Results table -->
+  <section class="container mx-auto px-4 py-8" aria-label="Search results">
+    <div class="overflow-x-auto">
+      <table id="resultsTable" class="w-full text-sm" data-link-key="pomId">
+        <thead>
+          <tr>
+            <th scope="col">POM‑ID</th>
+            <th scope="col">Formula</th>
+            <th scope="col">Elements</th>
+            <th scope="col">Molecular Mass</th>
+            <th scope="col">Charge</th>
+            <th scope="col">Label</th>
+            <th scope="col">POM Material Formula</th>
+            <th scope="col">DOI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS populates rows here. If no filters are applied, everything from data/Curated_POMs.json appears. -->
+        </tbody>
+      </table>
     </div>
-  </p>
-  <br>
-  <h2>Further Resources:</h2>
-  <div class="resources">
-    <div class="resource-item">
-      <a href="https://digital-chemistry.github.io/Curated_POMs/search.html" target="_blank" rel="noopener">
-        Curated POMs Search Page
-      </a>
-    </div>
-    <div class="resource-item">
-      <a href="#" target="_blank" rel="noopener">
-        LLM Synthesis Regeneration Page (Coming Soon)
-      </a>
-    </div>
-  </div>
+  </section>
+
+  <!-- Hidden pop‑up for Netlify/ChatGPT detail fetches -->
+  <dialog id="detailsPopup" class="max-w-prose rounded-lg p-4 shadow-xl">
+    <header class="flex items-center justify-between mb-2">
+      <h2 id="detailsTitle" class="font-semibold">POM Details</h2>
+      <button id="closePopup" class="btn-close" aria-label="Close details">&times;</button>
+    </header>
+    <pre id="detailsContent" class="whitespace-pre-wrap text-sm"></pre>
+  </dialog>
+
+  <!--
+    #######################################################################
+      Implementation Notes (delete when finished styling / scripting)
+    #######################################################################
+      • data/Curated_POMs.json  –> fetch + filter in assets/search.js.
+      • <table data-link-key="pomId"> –> whichever column is used as the clickable
+        link for Netlify/ChatGPT look‑ups. Change this single attribute if you
+        later decide to swap to another field.
+      • assets/details.js should:
+          1. intercept clicks on .details‑link anchors inside results rows,
+          2. POST the full JSON payload for that item to your Netlify endpoint
+             (placeholder: https://YOUR‑NETLIFY‑FUNCTION.netlify.app/),
+          3. parse the response, inject it into #detailsContent, and open <dialog>.
+  -->
 </body>
 </html>
