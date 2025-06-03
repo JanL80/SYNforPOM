@@ -127,11 +127,11 @@
       const elementsCell = Array.isArray(item.elements) ? item.elements.join(', ') : item.elements || '';
       tr.innerHTML = `
         <td>${linkKey in item ? `<a href="#" class="details-link" data-id="${item[linkKey]}">${item[linkKey]}</a>` : ''}</td>
-        <td>${item.formula}</td>
         <td>${elementsCell}</td>
         <td>${item.mass}</td>
         <td>${item.charge}</td>
         <td>${item.label}</td>
+        <td>${item.formula}</td>
         <td>${item.material}</td>
         <td>${item.doi}</td>
       `;
