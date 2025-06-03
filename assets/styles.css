@@ -47,6 +47,40 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 }
 @media (max-width: 767px) { .vertical-divider { display: none; } }
 
+
+
+/* VERTICAL DIVIDERS */
+
+/* shared look */
+.vertical-divider,
+.vertical-divider.wide {
+  background: var(--divider);
+  width: 1px;
+  flex: 0 0 1px;              /* never shrink or grow horizontally */
+}
+
+/* 1️⃣ intro / how-to line  ------------------------------------ */
+[aria-label="About"] {                     /* the <section> with the two paragraphs */
+  display: flex;                           /* put items side-by-side */
+  flex-direction: column;                  /* stack on phones */
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {                /* tablets & up */
+  [aria-label="About"] { flex-direction: row; }
+}
+
+/* 2️⃣ search-vs-results line  --------------------------------- */
+.vertical-divider.wide { display: none; }  /* hide on narrow screens */
+
+@media (min-width: 1024px) {               /* desktop */
+  .vertical-divider.wide {
+    display: block;        /* now visible */
+    align-self: stretch;   /* full container height */
+  }
+}
+
+
+
 /* --- Forms --------------------------------------------------------- */
 #searchForm label {
   display: block;
@@ -121,7 +155,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   position: sticky;
   top: 0;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.10);
+  background: #444c4e;
   white-space: nowrap;         /* keep labels on one line */
 }
 
