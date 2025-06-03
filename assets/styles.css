@@ -189,4 +189,36 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
   overflow-x: hidden;  /* prevent sideways spill */ 
 }
 
+/* --- Wrap & safely scroll long lines inside the pop-up ------------------ */
+#detailsContent {
+  white-space: pre-wrap;    /* already default, but keep for clarity  */
+  word-break: break-word;   /* break long tokens (URLs, long IDs)     */
+  overflow-x: auto;         /* if a line truly can’t wrap, show a bar */
+}
+
+/* --- Keep the × icon visible on the white pop-up ------------------------- */
+#detailsPopup .btn-close {
+  color: #ff4d4d;        /* show a red × all the time        */
+  opacity: 1;            /* make sure no utility class set it lower */
+}
+
+/* --- hover shade over x icon -------------------*/
+#detailsPopup .btn-close:hover {
+  color: #d40000;        /* slightly darker red on hover     */
+}
+
+/* --- Force black text & spinner inside the pop-up --------- */
+#detailsPopup {
+  color: #000;                       /* default text colour     */
+}
+
+#detailsPopup .loading-text {
+  color: #000;                       /* explicit for the line   */
+}
+
+#detailsPopup .spinner {
+  border-color: rgba(0, 0, 0, 0.25); /* pale grey ring          */
+  border-top-color: #000;            /* solid black sweep       */
+}
+
 
