@@ -1,29 +1,24 @@
-/* ------------------------------
-   Polyoxometalate Explorer CSS
-   ------------------------------ */
+/* -------------------------------------------------------------
+   Polyoxometalate Explorer – global stylesheet (v2, fixes applied)
+   ------------------------------------------------------------- */
 
 :root {
-  --bg-marine: #0b3d91;          /* deep marine‑blue background */
+  --bg-marine: #0b3d91;                 /* deep marine‑blue */
   --white: #ffffff;
-  --divider: rgba(255, 255, 255, 0.25);
+  --divider: rgba(255, 255, 255, 0.25); /* subtle line colour */
 }
 
-/* Box‑sizing reset */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* Base page styling */
+/* --- Reset & base -------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
 html, body {
   margin: 0;
-  padding: 0;
   height: 100%;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--white);
   background: var(--bg-marine);
 }
 
-/* Utility containers (mirrors Tailwind‑like classes used in HTML) */
+/* --- Utility containers (Tailwind‑like) ---------------------------- */
 .container { max-width: 1200px; width: 100%; margin-inline: auto; }
 .mx-auto { margin-inline: auto; }
 .py-6 { padding-block: 1.5rem; }
@@ -35,28 +30,24 @@ html, body {
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 
-/* Responsive helpers for ≥ 1024 px (mirrors lg: prefix) */
 @media (min-width: 1024px) {
   .lg\:flex-row { flex-direction: row; }
   .lg\:gap-8   { gap: 2rem; }
 }
 
-/* Headline */
+/* --- Headline & intro copy ---------------------------------------- */
 h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
-
-/* Intro & how‑to paragraphs */
 .editable-text { line-height: 1.6; }
 
-/* Vertical divider – reused twice */
+/* --- Vertical divider --------------------------------------------- */
 .vertical-divider {
   width: 1px;
   background: var(--divider);
-  align-self: stretch;   /* full height in flex column */
+  align-self: stretch;
 }
-/* Hide on narrow screens */
 @media (max-width: 767px) { .vertical-divider { display: none; } }
 
-/* Search form */
+/* --- Forms --------------------------------------------------------- */
 #searchForm label {
   display: block;
   margin-top: 0.75rem;
@@ -70,11 +61,11 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   border: none;
   border-radius: 4px;
   font-size: 0.875rem;
-  color: #000;             /* dark text for readability in inputs */
+  color: #000;
 }
 #searchForm input::placeholder { color: #666; }
 
-/* Buttons */
+/* --- Buttons ------------------------------------------------------- */
 .btn-primary,
 .btn-secondary,
 .btn-close {
@@ -95,7 +86,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 }
 .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
 
-/* Close button (popup) */
 .btn-close {
   background: none;
   color: var(--white);
@@ -104,57 +94,48 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 }
 .btn-close:hover { color: #ff8080; }
 
-/* Results table */
+/* --- Scrollable results area -------------------------------------- */
+.table-scroll {
+  max-height: 70vh;         /* adjust as needed */
+  overflow-y: auto;         /* vertical scrollbar */
+  overflow-x: auto;         /* horizontal when wide */
+}
+
+/* --- Table --------------------------------------------------------- */
 #resultsTable {
   width: 100%;
   border-collapse: collapse;
+  table-layout: auto;       /* let columns auto‑size */
   font-size: 0.875rem;
 }
-#resultsTable thead { background: rgba(255, 255, 255, 0.1); }
+
+/* sticky header */
+#resultsTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.10);
+}
+
 #resultsTable th,
 #resultsTable td {
   padding: 0.5rem 0.75rem;
   text-align: left;
+  vertical-align: top;
+  word-break: break-word;   /* wrap long tokens inside cells */
 }
-#resultsTable tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.05); }
-#resultsTable a.details-link { color: #c6e2ff; text-decoration: underline; }
+#resultsTable tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+#resultsTable a.details-link {
+  color: #c6e2ff;
+  text-decoration: underline;
+}
 
-/* Scroll wrapper on narrow screens */
+/* wrap long tables inside small screens */
 .overflow-x-auto { overflow-x: auto; }
 
-
-
-/* ───── Scrollable results box ───────────────────────────── */
-.table-scroll {
-  /* keeps the table in a “window” 70 % of the viewport tall   */
-  max-height: 70vh;
-  overflow: auto;        /* both x- & y-scrollbars appear as needed */
-}
-
-/* Keep the <thead> frozen while tbody scrolls */
-#resultsTable thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;            /* sit above the rows while scrolling      */
-  background: rgba(255, 255, 255, 0.10); /* match your header tint   */
-}
-
-/* Make tbody a block so only its rows scroll, not the header */
-#resultsTable tbody {
-  display: block;
-}
-
-/* Keep columns aligned (fixed-layout table) */
-#resultsTable thead,
-#resultsTable tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;    /* every column keeps the same width       */
-}
-
-
-
-/* Popup (<dialog>) */
+/* --- Popup <dialog> ------------------------------------------------ */
 dialog {
   border: none;
   background: var(--bg-marine);
@@ -162,10 +143,3 @@ dialog {
   border-radius: 8px;
 }
 dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
-
-/* Utility class to stretch vertical divider between card columns in <main> */
-@media (min-width: 1024px) {
-  main > .vertical-divider.wide {
-    display: block;
-  }
-}
