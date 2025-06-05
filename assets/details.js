@@ -8,6 +8,21 @@
   const OFFSET_X     = 20;   // px to the right of cursor
   const OFFSET_Y     = 20;   // gap between cursor & pop-up
 
+
+   
+ /* ---------------------------------------------------------------
+   Lazy-load Procedures.json the first time we need it
+   ---------------------------------------------------------------*/
+ let PROCEDURE_MAP = null;
+ async function getProcedure(id) {
+   if (!PROCEDURE_MAP) {
+     PROCEDURE_MAP = await (await fetch('/data/Procedures.json')).json();
+   }
+   return PROCEDURE_MAP[id];
+ }
+
+
+   
   /* --------------- DOM look-ups ---------------------------------- */
   const dialog    = document.getElementById('detailsPopup');
   const titleEl   = document.getElementById('detailsTitle');
@@ -81,17 +96,10 @@
   /* ---------------- Fetch helper ---------------------------------- */
   async function fetchRemoteDetails(record) {
    try {
-     /*  Build the body that synthesize.js expects:
-         {
-           pomData:        full Curated_POMs object,
-           procedureData:  matching entry from Procedures.json,
-           language:       user-preferred locale
-         }
-     */
+      
      const body = {
-       pomData: record,
-       procedureData: (window.PROCEDURE_MAP || {})[record.pomId],
-       language: navigator.language
+       pomId:     record.pomId,
+       procedure: await getProcedure(record.pomId)
      };
 
      const res = await fetch("/.netlify/functions/synthesize", {
