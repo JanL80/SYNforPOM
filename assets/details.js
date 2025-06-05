@@ -3,10 +3,14 @@
    ------------------------------------------------------------------- */
 
 (() => {
+
+   
   /* ---------------- Configuration -------------------------------- */
   const ENDPOINT = 'https://YOUR-NETLIFY-FUNCTION.netlify.app/'; // ← replace later
   const POPUP_WIDTH = 380;                                       // fixed width (px)
 
+
+   
   /* --------------- DOM look‑ups ---------------------------------- */
   const dialog    = document.getElementById('detailsPopup');
   const titleEl   = document.getElementById('detailsTitle');
@@ -18,6 +22,8 @@
     return;
   }
 
+
+   
   /* ---------------- Spinner styles (inject once) ------------------ */
   (function injectSpinnerCSS () {
     if (document.getElementById('spinner-styles')) return; // already injected
@@ -32,21 +38,32 @@
     document.head.appendChild(style);
   })();
 
-  /* ---------------- Utility: position popup above link ------------ */
-  function positionPopup(anchorRect) {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const scrollX = window.scrollX || window.pageXOffset;
+   
 
-    // Center horizontally on anchor; place 12px above it.
-    const top  = anchorRect.top  + scrollY - dialog.offsetHeight - 12;
-    const left = anchorRect.left + scrollX + anchorRect.width / 2 - POPUP_WIDTH / 2;
+  /* ---------------- Utility: position popup near cursor ----------- */
+  function positionPopup(mouseX, mouseY) {
+    const offsetX = 16;                       // 16 px to the right
+    const offsetY = 20;                       // 20 px above cursor
 
-    dialog.style.position = 'absolute'; // override default dialog centering
+    // Desired coords
+    let left = mouseX + offsetX;
+    let top  = mouseY - dialog.offsetHeight - offsetY;
+
+    // Keep inside viewport (8 px padding)
+    const maxLeft = window.scrollX + document.documentElement.clientWidth  - POPUP_WIDTH - 8;
+    const maxTop  = window.scrollY + document.documentElement.clientHeight - dialog.offsetHeight - 8;
+
+    left = Math.min(Math.max(left, window.scrollX + 8),  maxLeft);
+    top  = Math.min(Math.max(top,  window.scrollY + 8),  maxTop);
+
+    dialog.style.position = 'absolute';
     dialog.style.width    = POPUP_WIDTH + 'px';
-    dialog.style.left     = Math.max(8, left) + 'px';
-    dialog.style.top      = Math.max(8, top)  + 'px';
+    dialog.style.left     = left + 'px';
+    dialog.style.top      = top  + 'px';
   }
+ 
 
+   
   /* ---------------- Fetch helper ---------------------------------- */
   async function fetchRemoteDetails(record) {
     try {
@@ -65,12 +82,16 @@
     }
   }
 
+
+   
   /* ---------------- Show spinner + loading text ------------------- */
   function showLoading(recordId) {
     titleEl.textContent = `${recordId}`;
     contentEl.innerHTML = '<div class="spinner"></div><p class="loading-text">Synthesis procedure is being generated…</p>';
   }
 
+
+   
   /* ---------------- Link‑click handler ---------------------------- */
   async function handleLinkClick (evt) {
     const link = evt.target.closest('.details-link');
@@ -85,7 +106,7 @@
     dialog.show(); // non‑modal so we can reposition freely
 
     // position after show() so offsetHeight is known
-    positionPopup(link.getBoundingClientRect());
+    positionPopup(evt.pageX, evt.pageY);
 
     const remoteText = await fetchRemoteDetails(record);
 
@@ -93,15 +114,21 @@
     contentEl.textContent = remoteText;
 
     // reposition again in case height changed (keep arrow aligned)
-    positionPopup(link.getBoundingClientRect());
+    positionPopup(evt.pageX, evt.pageY);
   }
 
+
+   
   /* ---------------- Close button ---------------------------------- */
   closeBtn.addEventListener('click', () => dialog.close());
 
   /* block ESC key default (keeps content if user presses esc) */
   dialog.addEventListener('cancel', e => e.preventDefault());
 
+
+   
   /* ---------------- Global click listener ------------------------- */
   document.addEventListener('click', handleLinkClick, false);
 })();
+
+
