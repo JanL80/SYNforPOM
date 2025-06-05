@@ -3,7 +3,7 @@
    ------------------------------------------------------------------- */
 (() => {
   /* ---------------- Configuration -------------------------------- */
-  const ENDPOINT     = 'https://images.gameinfo.io/pokemon/256/p162f936.webp'; // ← replace later
+  const ENDPOINT = '/.netlify/functions/synthesize.js';
   const POPUP_WIDTH  = 380;  // fixed dialog width (px)
   const OFFSET_X     = 20;   // px to the right of cursor
   const OFFSET_Y     = 20;   // gap between cursor & pop-up
@@ -76,22 +76,40 @@
     dialog.style.top      = `${top}px`;
   }
 
+
+   
   /* ---------------- Fetch helper ---------------------------------- */
   async function fetchRemoteDetails(record) {
-    try {
-      const res = await fetch(ENDPOINT, {
-        method : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify(record)
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      try { return JSON.stringify(JSON.parse(text), null, 2); } // pretty JSON if possible
-      catch { return text; }
-    } catch (err) {
-      return `Error fetching synthesis: ${err.message}`;
-    }
-  }
+   try {
+     /*  Build the body that synthesize.js expects:
+         {
+           pomData:        full Curated_POMs object,
+           procedureData:  matching entry from Procedures.json,
+           language:       user-preferred locale
+         }
+     */
+     const body = {
+       pomData: record,
+       procedureData: (window.PROCEDURE_MAP || {})[record.pomId],
+       language: navigator.language
+     };
+
+     const res = await fetch(ENDPOINT, {
+       method : 'POST',
+       headers: { 'Content-Type': 'application/json' },
+       body   : JSON.stringify(body)
+     });
+     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+     /* synthesize.js returns { text: "...", error?: "..." } */
+     const { text, error } = await res.json();
+     return error || text;
+   } catch (err) {
+     return `Error fetching synthesis: ${err.message}`;
+   }
+ }
+
+   
 
   /* ---------------- Show spinner + loading text ------------------- */
   function showLoading(recordId) {
