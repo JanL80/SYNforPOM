@@ -42,7 +42,7 @@
   /* ---------------- Utility: position popup near cursor ----------- */
   function positionPopup(mouseX, mouseY) {
     // desired coordinates relative to viewport scroll
-    let left = mouseX + OFFSET_X;
+    let left = mouseX;
     let top  = mouseY - dialog.offsetHeight - OFFSET_Y;
 
     // keep inside viewport (8 px padding)
