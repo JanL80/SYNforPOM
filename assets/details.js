@@ -3,7 +3,7 @@
    ------------------------------------------------------------------- */
 (() => {
   /* ---------------- Configuration -------------------------------- */
-  const ENDPOINT = '/netlify/functions/synthesize';
+  const ENDPOINT = '/.netlify/functions/synthesize';
   const POPUP_WIDTH  = 380;  // fixed dialog width (px)
   const OFFSET_X     = 20;   // px to the right of cursor
   const OFFSET_Y     = 20;   // gap between cursor & pop-up
