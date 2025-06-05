@@ -1,0 +1,25 @@
+{
+  "POM_XIFU": {
+    "title": "Synthesis of Na10[Cu2Mo6O24]·nH2O",
+    "reagents": [
+      { "compound": "Cu(NO3)2·3H2O",        "amount": "0.50 mmol", "solvent": "H2O" },
+      { "compound": "(NH4)6Mo7O24·4H2O",    "amount": "0.70 mmol", "solvent": "H2O" },
+      { "compound": "NaOH (1 M)",           "amount": "to pH 8.5", "solvent": "H2O" }
+    ],
+    "conditions": {
+      "temperature": "90 °C",
+      "duration": "4 h",
+      "atmosphere": "air",
+      "pH": 8.5
+    },
+    "steps": [
+      "Dissolve Cu(NO3)2·3H2O in 10 mL deionised water.",
+      "Add (NH4)6Mo7O24·4H2O with stirring until clear.",
+      "Adjust pH to 8.5 using 1 M NaOH.",
+      "Heat the solution to 90 °C and reflux for 4 h.",
+      "Cool to room temperature, filter, and slowly evaporate at 40 °C.",
+      "Blue block crystals suitable for X-ray diffraction appear after 3 days."
+    ],
+    "yield": "68 % (based on Cu)"
+  }
+}
