@@ -102,16 +102,19 @@
        procedure: await getProcedure(record.pomId)
      };
 
-     const res = await fetch("/.netlify/functions/synthesize", {
+     const res = await fetch(ENDPOINT, {
        method : 'POST',
        headers: { 'Content-Type': 'application/json' },
        body   : JSON.stringify(body)
      });
-     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+     const { text, error } = await res.json().catch(() => ({}));
 
-     /* synthesize.js returns { text: "...", error?: "..." } */
-     const { text, error } = await res.json();
-     return error || text;
+     /* If the status wasn’t OK, include both pieces so we see why */
+     if (!res.ok) {
+       return `Server error ${res.status}: ${error || text || 'no details'}`;
+     }
+     return text;
+      
    } catch (err) {
      return `Error fetching synthesis: ${err.message}`;
    }
