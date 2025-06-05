@@ -6,7 +6,7 @@
   /* ---------------- Configuration -------------------------------- */
   const ENDPOINT     = 'https://YOUR-NETLIFY-FUNCTION.netlify.app/'; // ← replace later
   const POPUP_WIDTH  = 380;   // fixed dialog width  (px)
-  const OFFSET_X     = 16;    // px to the right of cursor
+  const OFFSET_X     = -16;    // px to the right of cursor
   const OFFSET_Y     = 20;    // px above  cursor
 
   /* --------------- DOM look-ups ---------------------------------- */
