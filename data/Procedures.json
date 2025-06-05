@@ -1,25 +1,25 @@
 {
   "POM_XIFU": {
-    "title": "Synthesis of Na10[Cu2Mo6O24]·nH2O",
+    "title": "Synthesis of NaVO3·nH2O (sodium metavanadate)",
     "reagents": [
-      { "compound": "Cu(NO3)2·3H2O",        "amount": "0.50 mmol", "solvent": "H2O" },
-      { "compound": "(NH4)6Mo7O24·4H2O",    "amount": "0.70 mmol", "solvent": "H2O" },
-      { "compound": "NaOH (1 M)",           "amount": "to pH 8.5", "solvent": "H2O" }
+      { "compound": "V2O5",          "amount": "2.30 g (0.013 mol)", "solvent": "—" },
+      { "compound": "NaOH pellets",  "amount": "1.20 g (0.030 mol)", "solvent": "H2O 20 mL" },
+      { "compound": "Cold ethanol",  "amount": "≈ 50 mL",            "solvent": "—" }
     ],
     "conditions": {
-      "temperature": "90 °C",
-      "duration": "4 h",
+      "temperature": "100 °C (reflux)",
+      "duration": "30 min (until complete dissolution)",
       "atmosphere": "air",
-      "pH": 8.5
+      "pH": "> 12 (strongly basic)"
     },
     "steps": [
-      "Dissolve Cu(NO3)2·3H2O in 10 mL deionised water.",
-      "Add (NH4)6Mo7O24·4H2O with stirring until clear.",
-      "Adjust pH to 8.5 using 1 M NaOH.",
-      "Heat the solution to 90 °C and reflux for 4 h.",
-      "Cool to room temperature, filter, and slowly evaporate at 40 °C.",
-      "Blue block crystals suitable for X-ray diffraction appear after 3 days."
+      "Dissolve NaOH pellets in 20 mL de-ionised water and bring the solution to a gentle boil.",
+      "With vigorous stirring add V2O5 portion-wise; maintain 100 °C until the orange solid fully dissolves, giving a clear yellow solution (≈ 30 min).",
+      "Hot-filter the solution to remove any insoluble residue.",
+      "Allow the filtrate to cool to ~60 °C, then add ~50 mL ice-cold ethanol while stirring; sodium metavanadate precipitates as fine colourless crystals.",
+      "Collect the solid by vacuum filtration and wash twice with small portions of cold ethanol to remove residual NaOH.",
+      "Dry the product at 80 °C for 2 h to obtain NaVO3·nH2O as an off-white powder."
     ],
-    "yield": "68 % (based on Cu)"
+    "yield": "≈ 85 % (based on V2O5)"
   }
 }
