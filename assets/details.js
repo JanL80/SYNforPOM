@@ -58,6 +58,7 @@
     dialog.style.width    = `${POPUP_WIDTH}px`;
     dialog.style.left     = `${left}px`;
     dialog.style.top      = `${top}px`;
+    dialog.style.margin   = '0'
   }
 
   /* ---------------- Fetch helper ---------------------------------- */
