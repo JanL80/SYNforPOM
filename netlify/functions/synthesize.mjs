@@ -33,13 +33,17 @@ export async function handler(event) {
   // ---------- 3. CALL OPENAI --------------------------------------------
   try {
     const chat = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",                   // pick any model your key can use
+      model: "gpt-4o-mini",                   // model-selection
       messages: [
         {
           role: "system",
           content:
-            "You are an expert inorganic chemist. " +
-            "Rewrite the following laboratory procedure clearly and concisely."
+            "You are an expert inorganic chemist." +
+            "Your task is to turn laboratory-procedure data (provided as JSON) into a clear, precise synthesis description that could go straight into an experimental section of a journal article. " +
+            "Write exactly one paragraph of running text; No headings, lists, tables, line breaks, code fences, or commentary. " +
+            "If a field is missing or undefined, omit it without mention. " +
+            "Use SI units with numbers (e.g. “2.50 g”, “10 mL”) and standard chemical nomenclature. " +
+            "Do not add anything that cannot be derived from the data."
         },
         { role: "user", content: JSON.stringify(procedure, null, 2) }
       ],
