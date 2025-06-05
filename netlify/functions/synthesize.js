@@ -17,7 +17,7 @@ Return the text in ${language}.
   // 3 call OpenAI (key comes from env var)
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const chat = await openai.chat.completions.create({
-    model: "gpt-4.1-nano",
+    model: "gpt-4.1-nano-2025-04-14",
     temperature: 0.2,
     messages: [{ role: "user", content: prompt }]
   });
