@@ -99,14 +99,14 @@
     // show spinner, open dialog, position near cursor
     showLoading(recordId);
     dialog.show();                             // non-modal
-    positionPopup(evt.clientX, evt.clientY);
+    positionPopup(evt.pageX, evt.pageY);
 
     // fetch remote details
     const remoteText = await fetchRemoteDetails(record);
 
     // display response & re-measure height
     contentEl.textContent = remoteText;
-    positionPopup(evt.clientX, evt.clientY);       // realign if height grew
+    positionPopup(evt.pageX, evt.pageY);       // realign if height grew
   }
 
   /* ---------------- Close button & ESC behaviour ------------------ */
