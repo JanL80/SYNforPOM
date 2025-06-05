@@ -94,10 +94,10 @@
        language: navigator.language
      };
 
-     const res = await fetch(ENDPOINT, {
+     const res = await fetch("/.netlify/functions/synthesize", {
        method : 'POST',
        headers: { 'Content-Type': 'application/json' },
-       body   : JSON.stringify(body)
+       body   : JSON.stringify({ pomId, procedure })
      });
      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
