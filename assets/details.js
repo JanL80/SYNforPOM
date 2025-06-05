@@ -105,7 +105,7 @@
      const res = await fetch("/.netlify/functions/synthesize", {
        method : 'POST',
        headers: { 'Content-Type': 'application/json' },
-       body   : JSON.stringify({ pomId, procedure })
+       body   : JSON.stringify(body)
      });
      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
