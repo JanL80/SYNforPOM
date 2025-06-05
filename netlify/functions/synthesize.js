@@ -1,27 +1,41 @@
 import OpenAI from "openai";
 
-export default async (req, ctx) => {
-  // 1 parse POST body
-  const { pomData, procedureData, language = "English" } = await req.json();
+/**  POST /.netlify/functions/synthesize  */
+export const handler = async (event) => {
+  try {
+    // ---------- request body ----------
+    const { pomData, procedureData, language = "English" } = JSON.parse(
+      event.body ?? "{}"
+    );
 
-  // 2 assemble prompt
-  const prompt = `
+    // ---------- build prompt ----------
+    const prompt = `
 You are an expert inorganic chemist.
-Compose a clear, step-by-step laboratory synthesis for the compound below.
+Using the experimental details below, write a clear, step-by-step laboratory
+synthesis for the compound.  Return the text in ${language}.
 
 ${JSON.stringify(procedureData, null, 2)}
+`;
 
-Return the text in ${language}.
-  `.trim();
+    // ---------- OpenAI call ----------
+    const openai = new OpenAI();          // uses OPENAI_API_KEY from env
+    const chat = await openai.chat.completions.create({
+      model: "gpt-4o-mini",               // pick a valid model name
+      temperature: 0.2,
+      messages: [{ role: "user", content: prompt }]
+    });
 
-  // 3 call OpenAI (key comes from env var)
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-  const chat = await openai.chat.completions.create({
-    model: "gpt-4.1-nano-2025-04-14",
-    temperature: 0.2,
-    messages: [{ role: "user", content: prompt }]
-  });
-
-  // 4 ship the response back to the browser
-  return Response.json({ text: chat.choices[0].message.content });
+    // ---------- success ----------
+    return {
+      statusCode: 200,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: chat.choices[0].message.content })
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
+    };
+  }
 };
