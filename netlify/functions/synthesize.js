@@ -34,7 +34,9 @@ export async function handler(event) {
       body: JSON.stringify({ synthesis: chat.choices[0].message.content })
     };
   } catch (err) {
-    console.error("OpenAI error →", err);
-    return { statusCode: 500, body: "Internal Server Error" };
-  }
-}
+   console.error(err);                       // stays in the logs
+   return {
+     statusCode: 500,
+     body: JSON.stringify({ error: err.message })   // ← send it to the page
+   };
+ }
