@@ -1,13 +1,12 @@
 /* -------------------------------------------------------------------
    Polyoxometalate Explorer – anchored pop-up with spinner + Netlify fetch
    ------------------------------------------------------------------- */
-
 (() => {
   /* ---------------- Configuration -------------------------------- */
   const ENDPOINT     = 'https://YOUR-NETLIFY-FUNCTION.netlify.app/'; // ← replace later
-  const POPUP_WIDTH  = 380;   // fixed dialog width  (px)
-  const OFFSET_X     = 20;    // px to the right of cursor
-  const OFFSET_Y     = 20;    // px above  cursor
+  const POPUP_WIDTH  = 380;  // fixed dialog width (px)
+  const OFFSET_X     = 20;   // px to the right of cursor
+  const OFFSET_Y     = 20;   // gap between cursor & pop-up
 
   /* --------------- DOM look-ups ---------------------------------- */
   const dialog    = document.getElementById('detailsPopup');
@@ -22,13 +21,13 @@
   /* ---------------- Spinner styles (inject once) ------------------ */
   (function injectSpinnerCSS() {
     if (document.getElementById('spinner-styles')) return;      // already injected
-    const style     = document.createElement('style');
-    style.id        = 'spinner-styles';
+    const style = document.createElement('style');
+    style.id    = 'spinner-styles';
     style.textContent = `
       .spinner {
         width: 24px; height: 24px;
         border: 3px solid rgba(0,0,0,.25);
-        border-top-color: #000;          /* black sweep */
+        border-top-color: #000;
         border-radius: 50%;
         animation: spin .8s linear infinite;
         margin-inline: auto;
@@ -39,22 +38,39 @@
     document.head.appendChild(style);
   })();
 
-  /* ---------------- Utility: position popup near cursor ----------- */
-  function positionPopup(mouseX, mouseY) {
-    // desired coordinates relative to viewport scroll
-    let left = mouseX + OFFSET_X;
-    let top  = mouseY - dialog.offsetHeight - OFFSET_Y;
+  /* ---------------- Utility: position pop-up near cursor ---------- */
+  function positionPopup(clientX, clientY) {
+    /* Convert viewport ➜ document coordinates */
+    const pageX = window.scrollX + clientX;
+    const pageY = window.scrollY + clientY;
 
-    // keep inside viewport (8 px padding)
+    /* ----- Horizontal: simple right-hand offset, then clamp -------- */
+    let left = pageX + OFFSET_X;
     const minLeft = window.scrollX + 8;
-    const minTop  = window.scrollY + 8;
-    const maxLeft = window.scrollX + document.documentElement.clientWidth  - POPUP_WIDTH - 8;
-    const maxTop  = window.scrollY + document.documentElement.clientHeight - dialog.offsetHeight - 8;
-
+    const maxLeft = window.scrollX + document.documentElement.clientWidth - POPUP_WIDTH - 8;
     left = Math.min(Math.max(left, minLeft), maxLeft);
-    top  = Math.min(Math.max(top,  minTop),  maxTop);
 
+    /* ----- Vertical: prefer above, fall back below ----------------- */
+    const roomAbove = clientY;                                     // px from viewport top to cursor
+    const needsAbove = dialog.offsetHeight + OFFSET_Y + 8;         // space we’d need
+
+    let top;
+    if (roomAbove >= needsAbove) {
+      /* Enough room:  place the panel above the cursor */
+      top = pageY - dialog.offsetHeight - OFFSET_Y;
+    } else {
+      /* Not enough room:  flip it below the cursor */
+      top = pageY + OFFSET_Y;
+    }
+
+    /* Final vertical clamp so it never pokes off-screen */
+    const minTop = window.scrollY + 8;
+    const maxTop = window.scrollY + document.documentElement.clientHeight - dialog.offsetHeight - 8;
+    top = Math.min(Math.max(top, minTop), maxTop);
+
+    /* Apply position */
     dialog.style.position = 'absolute';
+    dialog.style.margin   = '0';               // kill UA auto-centring
     dialog.style.width    = `${POPUP_WIDTH}px`;
     dialog.style.left     = `${left}px`;
     dialog.style.top      = `${top}px`;
@@ -95,17 +111,17 @@
     const record   = (window.POM_DATA || []).find(d => String(d.pomId) === recordId);
     if (!record) return;
 
-    // show spinner, open dialog, position near cursor
+    /* Show spinner, open dialog, position near cursor */
     showLoading(recordId);
-    dialog.show();                             // non-modal
-    positionPopup(evt.pageX, evt.pageY);
+    dialog.show();                                   // non-modal
+    positionPopup(evt.clientX, evt.clientY);
 
-    // fetch remote details
+    /* Fetch remote details */
     const remoteText = await fetchRemoteDetails(record);
 
-    // display response & re-measure height
+    /* Display response & re-measure height */
     contentEl.textContent = remoteText;
-    positionPopup(evt.pageX, evt.pageY);       // realign if height grew
+    positionPopup(evt.clientX, evt.clientY);         // realign if height grew
   }
 
   /* ---------------- Close button & ESC behaviour ------------------ */
