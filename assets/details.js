@@ -6,7 +6,7 @@
   /* ---------------- Configuration -------------------------------- */
   const ENDPOINT     = 'https://YOUR-NETLIFY-FUNCTION.netlify.app/'; // ← replace later
   const POPUP_WIDTH  = 380;   // fixed dialog width  (px)
-  const OFFSET_X     = -POPUP_WIDTH / 2;    // px to the right of cursor
+  const OFFSET_X     = 20;    // px to the right of cursor
   const OFFSET_Y     = 20;    // px above  cursor
 
   /* --------------- DOM look-ups ---------------------------------- */
@@ -42,7 +42,7 @@
   /* ---------------- Utility: position popup near cursor ----------- */
   function positionPopup(mouseX, mouseY) {
     // desired coordinates relative to viewport scroll
-    let left = mouseX;
+    let left = mouseX - OFFSET_X;
     let top  = mouseY - dialog.offsetHeight - OFFSET_Y;
 
     // keep inside viewport (8 px padding)
@@ -98,14 +98,14 @@
     // show spinner, open dialog, position near cursor
     showLoading(recordId);
     dialog.show();                             // non-modal
-    positionPopup(evt.pageX, evt.pageY);
+    positionPopup(evt.clientX, evt.clientY);
 
     // fetch remote details
     const remoteText = await fetchRemoteDetails(record);
 
     // display response & re-measure height
     contentEl.textContent = remoteText;
-    positionPopup(evt.pageX, evt.pageY);       // realign if height grew
+    positionPopup(evt.clientX, evt.clientY);       // realign if height grew
   }
 
   /* ---------------- Close button & ESC behaviour ------------------ */
