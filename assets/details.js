@@ -102,6 +102,9 @@
        procedure: await getProcedure(record.pomId)
      };
 
+     if (!body.procedure) {
+       return 'No synthesis information available for this POM.';}
+      
      const res = await fetch(ENDPOINT, {
        method : 'POST',
        headers: { 'Content-Type': 'application/json' },
