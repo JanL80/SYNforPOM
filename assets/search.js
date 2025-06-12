@@ -14,38 +14,6 @@
     dataFile: 'data/Curated_POMs.json',
   };
 
-
-
-   
-/* --------------------------------------------------------------
-   Safe fetch for synthesis text
-   Returns the trimmed string  or  null  if anything goes wrong
-   -------------------------------------------------------------- */
-async function getSynthesisText (pomId) {
-  try {
-    // 1 · Ask the server for the JSON that should contain a `synthesis` field.
-    //    — adapt the URL pattern if your API is different —
-    const resp = await fetch(`/api/procedures/${pomId}.json`);
-
-    // 2 · Network problem, 404, etc.?
-    if (!resp.ok) throw new Error('no-file');
-
-    // 3 · Parse the JSON body
-    const data = await resp.json();
-
-    // 4 · Does it actually have non-empty text?
-    const text = data?.synthesis?.trim();
-    if (!text) throw new Error('no-field');
-
-    return text;                     // <<< success path
-  } catch (err) {
-    // 5 · Any kind of trouble?  Just tell the caller “nothing”.
-    return null;
-  }
-}
-
-
-
    
   let fullDataset = [];
 
