@@ -81,7 +81,8 @@ function collectFilters () {
     pomId   : fd.get('pomId').trim(),
     formula : fd.get('formula').trim(),
     elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
-    mass    : fd.get('mass').trim(),
+    massMin : fd.get('massMin').trim(),
+    massMax : fd.get('massMax').trim(),
     chargeMin: fd.get('chargeMin').trim(),
     chargeMax: fd.get('chargeMax').trim(),
     label   : fd.get('label').trim(),
@@ -100,11 +101,12 @@ function collectFilters () {
       const itemEls = Array.isArray(item.elements)
         ? item.elements.map(e => e.toLowerCase())
         : String(item.elements || '').toLowerCase().split(/[\\s,]+/);
-      for (const el of f.elements) if (!itemEls.includes(el.toLowerCase())) return false;
-    }
+      for (const el of f.elements) if (!itemEls.includes(el.toLowerCase())) return false;}
 
-    if (f.mass && Number(item.mass) !== Number(f.mass)) return false;
-     if ((f.chargeMin && Number(item.charge) < Number(f.chargeMin)) ||
+    if ((f.massMin && Number(item.mass) < Number(f.massMin)) ||
+         (f.massMax && Number(item.mass) > Number(f.massMax))) {
+        return false;}
+    if ((f.chargeMin && Number(item.charge) < Number(f.chargeMin)) ||
          (f.chargeMax && Number(item.charge) > Number(f.chargeMax))) {
         return false;}
     if (f.label && item.label !== f.label) return false;
