@@ -82,10 +82,8 @@ function collectFilters () {
     formula : fd.get('formula').trim(),
     elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
     mass    : fd.get('mass').trim(),
-    /* ▼ NEW ▼ */
     chargeMin: fd.get('chargeMin').trim(),
     chargeMax: fd.get('chargeMax').trim(),
-    /* ▲ NEW ▲ */
     label   : fd.get('label').trim(),
     material: fd.get('material').trim(),
     doi     : fd.get('doi').trim(),
@@ -106,7 +104,9 @@ function collectFilters () {
     }
 
     if (f.mass && Number(item.mass) !== Number(f.mass)) return false;
-    if (f.charge && String(item.charge) !== String(f.charge)) return false;
+     if ((f.chargeMin && Number(item.charge) < Number(f.chargeMin)) ||
+         (f.chargeMax && Number(item.charge) > Number(f.chargeMax))) {
+        return false;}
     if (f.label && item.label !== f.label) return false;
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
