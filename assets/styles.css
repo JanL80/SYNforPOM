@@ -41,6 +41,11 @@ html, body {
 
 
 
+/* --- simple grow-to-fill utility --------------------------- */
+.flex-1 { flex: 1 1 0; }   /* 0 = base-width, so siblings split evenly */
+
+
+
 /* --- Headline & intro copy ---------------------------------------- */
 h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 .editable-text { line-height: 1.6; }
