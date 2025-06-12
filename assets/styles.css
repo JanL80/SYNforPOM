@@ -90,6 +90,13 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 }
 #searchForm input::placeholder { color: #666; }
 
+/* --- Force the label dropdown to be solid white ------------------- */
+#searchLabel{
+  background-color:#fff;      /* white face */
+  color:#111;                 /* dark text  */
+  border:1px solid #d1d5db;   /* thin soft-grey outline (optional) */
+}
+
 
 
 /* --- Generic form-row layout (re-use for every field line) --------- */
@@ -116,41 +123,62 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-/* --- pill container sits to the right of the <select> ------------------*/
-#labelPicker {
-  display: flex;
-  gap: 1rem;
+/* --- Label picker ------------------------------------------ */
+#labelPicker{
+  display:flex;
+  gap:0;
 }
-.pill-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  align-items: center;
-  padding: .25rem 0;
+
+#labelPicker select{
+  flex:1 1 0;
+  width:100%;
 }
-/* the pills themselves */
-.pill {
-  background: #e5e7eb;
-  color: #111;
-  font-size: .875rem;
-  padding: .25rem .5rem .25rem .75rem;
-  border-radius: 9999px;
-  position: relative;
-  cursor: default;
+
+/* pill container → 4 pills per row, then wrap */
+.pill-box{
+  display:grid;
+  grid-template-columns:repeat(4,max-content);
+  gap:.5rem;
+  padding:.25rem 0;
 }
-.pill button {
-  all: unset;
-  position: absolute;
-  left: .25rem;
-  top: 0;
-  bottom: 0;
-  width: .75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  cursor: pointer;
+
+.pill-box:not(:empty){
+  margin-left:1rem;
 }
+
+/* individual pill */
+.pill{
+  position:relative;
+  background:#e5e7eb;
+  color:#fff;
+  font-size:.875rem;
+  line-height:1.35;
+  padding:.25rem .75rem .25rem 1.75rem;
+  border-radius:9999px;
+  white-space:nowrap;
+  cursor:default;
+}
+
+/* the x button */
+.pill button{
+  all:unset;
+  position:absolute;
+  left:.45rem;
+  top:0; bottom:0;
+  width:.9rem;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+  color: #d33;
+  transition:color .15s ease;
+}
+
+.pill button:hover,
+.pill button:focus{
+  color:#b00000;
+}
+
 
 
 
