@@ -96,10 +96,16 @@
           </div>
 
           <label for="searchLabel">Label</label>
-          <select id="searchLabel" name="label">
-            <option value="">Any</option>
-            <!-- JS will insert unique label options here at runtime -->
-          </select>
+          <!-- Label picker ---------------------------------------------------->
+          <div class="field-row" id="labelPicker">
+            <select id="searchLabel"
+                    name="label"
+                    multiple
+                    size="6">
+            </select>
+            <div id="chosenLabels" class="pill-box"></div>
+          </div>
+
 
           <label for="searchMaterial">POM Material Formula</label>
           <input type="text" id="searchMaterial" name="material" placeholder="Ag3(C2)(VO3)">
