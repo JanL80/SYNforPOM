@@ -21,7 +21,7 @@
     <h1 id="pageTitle" class="text-4xl font-bold">Polyoxometalate Explorer</h1>
   </header>
 
-  <!-- 🔹 horizontal rule under headline -->
+  <!-- horizontal rule under headline -->
   <div class="horizontal-divider"></div>
 
   <main class="container mx-auto flex flex-col gap-6 px-4 lg:gap-8">
@@ -62,8 +62,17 @@
           <label for="searchMass">Molecular Mass</label>
           <input type="number" step="any" id="searchMass" name="mass" placeholder="98.939">
 
-          <label for="searchCharge">Charge</label>
-          <input type="number" step="any" id="searchCharge" name="charge" placeholder="‑3">
+          <div class="flex gap-6 flex-wrap items-end">
+            <div class="flex flex-col">
+              <label for="searchChargeMin">Charge (min)</label>
+              <input type="number" id="searchChargeMin" name="chargeMin" placeholder="-10" step="1" style="width:6rem;">
+            </div>
+
+            <div class="flex flex-col">
+              <label for="searchChargeMax">Charge (max)</label>
+              <input type="number" id="searchChargeMax" name="chargeMax" placeholder="-2" step="1" style="width:6rem;">
+            </div>
+          </div>
 
           <label for="searchLabel">Label</label>
           <select id="searchLabel" name="label">
@@ -88,7 +97,7 @@
 
   <br>
   
-  <!-- 🔹 horizontal rule between filters and results -->
+  <!-- horizontal rule between filters and results -->
   <div class="horizontal-divider"></div>
 
   <!-- Secondary vertical divider separates filters from results on wide viewports -->
@@ -126,19 +135,5 @@
     <pre id="detailsContent" class="whitespace-pre-wrap text-sm"></pre>
   </dialog>
 
-  <!--
-    #######################################################################
-      Implementation Notes (delete when finished styling / scripting)
-    #######################################################################
-      • data/Curated_POMs.json  –> fetch + filter in assets/search.js.
-      • <table data-link-key="pomId"> –> whichever column is used as the clickable
-        link for Netlify/ChatGPT look‑ups. Change this single attribute if you
-        later decide to swap to another field.
-      • assets/details.js should:
-          1. intercept clicks on .details‑link anchors inside results rows,
-          2. POST the full JSON payload for that item to your Netlify endpoint
-             (placeholder: https://YOUR‑NETLIFY‑FUNCTION.netlify.app/),
-          3. parse the response, inject it into #detailsContent, and open <dialog>.
-  -->
 </body>
 </html>
