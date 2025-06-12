@@ -104,8 +104,8 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* Small, fixed-size checkbox (override browser default) */
 #procedureFilter input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   flex: 0 0 auto;
 }
 
