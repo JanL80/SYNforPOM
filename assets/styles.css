@@ -96,7 +96,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 .field-row,                  
 #procedureFilter {        
   display: flex;
-  align-items: center;         
+  align-items: baseline;         
   gap: 0.5rem;                 
   width: 100%;                
   margin: 0.75rem 0; 
@@ -107,6 +107,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
+  margin-top: 1px;
 }
 
 /* Single-line label that never wraps */
