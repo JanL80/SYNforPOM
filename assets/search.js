@@ -3,29 +3,33 @@
    ------------------------------------------------------------------- */
 
 (() => {
-  /**
-   * Configuration
-   * -----------------------------------------------------------------
-   * linkKey   – the property that becomes a clickable <a> link
-   * dataFile  – primary dataset
-   */
+
   const CONFIG = {
     linkKey: document.getElementById('resultsTable').dataset.linkKey || 'pomId',
     dataFile: 'data/Curated_POMs.json',
   };
 
    
-  let fullDataset = [];
+   /* ---------- load of Procedures.json -----------------------------------------------*/
+   let PROCEDURE_SET = null;
+   async function ensureProcedureSet () {
+     if (PROCEDURE_SET) return PROCEDURE_SET;
+   
+     const resp = await fetch('/data/Procedures.json');
+     const map  = await resp.json();
+     PROCEDURE_SET = new Set(Object.keys(map).map(String));
+     return PROCEDURE_SET;
+   }
 
-  /* -------------------------------
-     Fetch JSON dataset & bootstrap
-     -------------------------------*/
+
+  let fullDataset = [];
+   
+  /* ------------------ Fetch JSON dataset & bootstrap -------------------------------*/
   async function init() {
     try {
       const response = await fetch(CONFIG.dataFile);
       if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
 
-      // ── normalise the raw dictionary-of-dictionaries ──────────────
       const raw = await response.json();
       fullDataset = Object.entries(raw).map(([id, rec]) => {
         const matBlock = rec['POM Material Formula']
@@ -44,9 +48,7 @@
           doi: matBlock['DOI'] || ''
         };
       });
-      // ───────────────────────────────────────────────────────────────
 
-      // expose for details.js
       window.POM_DATA = fullDataset;
 
       hydrateLabelSelect();
@@ -57,9 +59,7 @@
     }
   }
 
-  /* -------------------------------
-     Populate the "Label" <select>
-     -------------------------------*/
+  /* -------------- Populate the "Label" <select> -------------------------------*/
   function hydrateLabelSelect() {
     const select = document.getElementById('searchLabel');
     if (!select) return;
@@ -85,6 +85,7 @@ function collectFilters () {
     massMin : fd.get('massMin').trim(),
     massMax : fd.get('massMax').trim(),
     chargeMin: fd.get('chargeMin').trim(),
+    hasProcedure: fd.has('hasProcedure'),
     chargeMax: fd.get('chargeMax').trim(),
     label   : fd.get('label').trim(),
     material: fd.get('material').trim(),
@@ -113,13 +114,14 @@ function collectFilters () {
     if (f.label && item.label !== f.label) return false;
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
+    
+     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.pomId))) { 
+        return false;}
 
     return true;
   }
 
-  /* -------------------------------
-     Render table rows 
-     -------------------------------*/
+  /* -------------------------- Render table rows -------------------------------*/
   function renderTable(dataset) {
     const tbody = document.querySelector('#resultsTable tbody');
     const linkKey = CONFIG.linkKey;
@@ -144,15 +146,15 @@ function collectFilters () {
     tbody.appendChild(frag);
   }
 
-  /* -------------------------------
-     Bind form submit / reset
-     -------------------------------*/
+  /* ------------------------ Bind form submit / reset -------------------------------*/
   function bindFormEvents() {
     const form = document.getElementById('searchForm');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const filters = collectFilters();
-      renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
+    form.addEventListener('submit', async e => {      // ← make it async
+       e.preventDefault();
+       const filters = collectFilters();
+       if (filters.hasProcedure) {
+          await ensureProcedureSet();}
+       renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
     });
     form.addEventListener('reset', () => setTimeout(() => renderTable(fullDataset), 0));
   }
