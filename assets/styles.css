@@ -92,6 +92,22 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
+/* --- check-box size ------------------------------------------------ */
+.chk-sm {
+  width: 14px;          /* default is 16 px */
+  height: 14px;
+}
+
+
+
+/* --- Keep the label on one line & align neatly ---------------------------- */
+.txt-inline {
+  white-space: nowrap;
+  line-height: 1;
+}
+
+
+
 /* --- Buttons ------------------------------------------------------- */
 .btn-primary,
 .btn-secondary,
