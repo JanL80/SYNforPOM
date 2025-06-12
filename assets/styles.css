@@ -92,18 +92,27 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-/* --- check-box size ------------------------------------------------ */
-.chk-sm {
-  width: 14px;          /* default is 16 px */
-  height: 14px;
+/* --- Generic form-row layout (re-use for every field line) --------- */
+.field-row,                  
+#procedureFilter {        
+  display: flex;
+  align-items: center;         
+  gap: 0.5rem;                 
+  width: 100%;                
+  margin: 0.75rem 0; 
 }
 
+/* Small, fixed-size checkbox (override browser default) */
+#procedureFilter input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;  
+}
 
-
-/* --- Keep the label on one line & align neatly ---------------------------- */
-.txt-inline {
+/* Single-line label that never wraps */
+#procedureFilter label {
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1;    
 }
 
 
