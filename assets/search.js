@@ -121,7 +121,6 @@ function initLabelPicker () {
   if (activeLabels.has(val)) return;
 
     activeLabels.add(val);
-    list.selectedIndex = -1;   // clear selection so UI doesn’t look stuck
     redraw();
   });
 }
