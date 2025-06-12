@@ -64,7 +64,14 @@
   function hydrateLabelSelect() {
     const select = document.getElementById('searchLabel');
     if (!select) return;
-
+     
+    const anyOpt        = document.createElement('option');
+    anyOpt.value        = '';
+    anyOpt.textContent  = 'Any'; 
+    anyOpt.selected     = true;    
+    anyOpt.dataset.any  = 'true'; 
+    select.appendChild(anyOpt);
+     
     const uniqueLabels = [...new Set(fullDataset.map(d => d.label).filter(Boolean))].sort();
     const frag = document.createDocumentFragment();
     uniqueLabels.forEach(label => {
@@ -104,8 +111,14 @@ function initLabelPicker () {
 
   /* click on an option → add it */
   list.addEventListener('change', () => {
-    const val = list.value;
-    if (!val || activeLabels.has(val)) return;
+  const val = list.value;
+  if (val === '') {
+    activeLabels.clear();
+    box.innerHTML = '';
+    list.selectedIndex = 0;
+    return;
+  }
+  if (activeLabels.has(val)) return;
 
     activeLabels.add(val);
     list.selectedIndex = -1;   // clear selection so UI doesn’t look stuck
@@ -191,18 +204,21 @@ function collectFilters () {
   /* ------------------------ Bind form submit / reset -------------------------------*/
   function bindFormEvents() {
     const form = document.getElementById('searchForm');
-    form.addEventListener('submit', async e => {      // ← make it async
+    form.addEventListener('submit', async e => {
        e.preventDefault();
        const filters = collectFilters();
        if (filters.hasProcedure) await ensureProcedureSet();
        renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
     });
     form.addEventListener('reset', () => {
-       activeLabels.clear();
-       document.getElementById('chosenLabels').innerHTML = '';
-       [...document.getElementById('searchLabel').options].forEach(o => (o.selected = false))
-          setTimeout(() => renderTable(fullDataset), 0);
-    });
+      activeLabels.clear();
+      document.getElementById('chosenLabels').innerHTML = '';
+      const list = document.getElementById('searchLabel');
+      [...list.options].forEach(o => (o.selected = false));
+      list.selectedIndex = 0;
+      setTimeout(() => renderTable(fullDataset), 0);
+});
+
   }
 
   /* Kick it off */
