@@ -52,6 +52,7 @@
       window.POM_DATA = fullDataset;
 
       hydrateLabelSelect();
+      initLabelPicker();
       renderTable(fullDataset);
       bindFormEvents();
     } catch (err) {
@@ -75,6 +76,45 @@
     select.appendChild(frag);
   }
 
+
+   let activeLabels = new Set();
+ 
+   function initLabelPicker () {
+     const list = document.getElementById('searchLabel');
+     const box  = document.getElementById('chosenLabels');
+   
+     /* whenever the user selects/deselects in the list */
+     list.addEventListener('change', () => {
+       /* 1 · update the Set — relies on list.multiple */
+       activeLabels = new Set([...list.selectedOptions].map(o => o.value));
+   
+       /* 2 · redraw the pills */
+       box.innerHTML = '';
+       activeLabels.forEach(lbl => {
+         const pill = document.createElement('span');
+         pill.className = 'pill';
+         pill.textContent = lbl;
+   
+         const btn = document.createElement('button');
+         btn.textContent = '×';
+         btn.addEventListener('click', () => {
+           /* remove from Set + UI + listbox */
+           activeLabels.delete(lbl);
+           pill.remove();
+           [...list.options].forEach(o => {
+             if (o.value === lbl) o.selected = false;
+           });
+         });
+   
+         pill.prepend(btn);
+         box.appendChild(pill);
+       });
+     });
+   }
+  
+
+
+   
 /* ------------------------- Form helpers ------------------------- */
 function collectFilters () {
   const fd = new FormData(document.getElementById('searchForm'));
@@ -87,7 +127,7 @@ function collectFilters () {
     chargeMin: fd.get('chargeMin').trim(),
     hasProcedure: fd.has('hasProcedure'),
     chargeMax: fd.get('chargeMax').trim(),
-    label   : fd.get('label').trim(),
+    labels : [...activeLabels],
     material: fd.get('material').trim(),
     doi     : fd.get('doi').trim(),
   };
@@ -111,7 +151,7 @@ function collectFilters () {
     if ((f.chargeMin && Number(item.charge) < Number(f.chargeMin)) ||
          (f.chargeMax && Number(item.charge) > Number(f.chargeMax))) {
         return false;}
-    if (f.label && item.label !== f.label) return false;
+    if (f.labels.length && !f.labels.includes(item.label)) return false;
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
     
@@ -152,11 +192,15 @@ function collectFilters () {
     form.addEventListener('submit', async e => {      // ← make it async
        e.preventDefault();
        const filters = collectFilters();
-       if (filters.hasProcedure) {
-          await ensureProcedureSet();}
+       if (filters.hasProcedure) await ensureProcedureSet();
        renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
     });
-    form.addEventListener('reset', () => setTimeout(() => renderTable(fullDataset), 0));
+    form.addEventListener('reset', () => {
+       activeLabels.clear();
+       document.getElementById('chosenLabels').innerHTML = '';
+       [...document.getElementById('searchLabel').options].forEach(o => (o.selected = false))
+          setTimeout(() => renderTable(fullDataset), 0);
+    });
   }
 
   /* Kick it off */
