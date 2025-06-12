@@ -79,38 +79,40 @@
 
    let activeLabels = new Set();
  
-   function initLabelPicker () {
-     const list = document.getElementById('searchLabel');
-     const box  = document.getElementById('chosenLabels');
-   
-     /* whenever the user selects/deselects in the list */
-     list.addEventListener('change', () => {
-       /* 1 · update the Set — relies on list.multiple */
-       activeLabels = new Set([...list.selectedOptions].map(o => o.value));
-   
-       /* 2 · redraw the pills */
-       box.innerHTML = '';
-       activeLabels.forEach(lbl => {
-         const pill = document.createElement('span');
-         pill.className = 'pill';
-         pill.textContent = lbl;
-   
-         const btn = document.createElement('button');
-         btn.textContent = '×';
-         btn.addEventListener('click', () => {
-           /* remove from Set + UI + listbox */
-           activeLabels.delete(lbl);
-           pill.remove();
-           [...list.options].forEach(o => {
-             if (o.value === lbl) o.selected = false;
-           });
-         });
-   
-         pill.prepend(btn);
-         box.appendChild(pill);
-       });
-     });
-   }
+function initLabelPicker () {
+  const list = document.getElementById('searchLabel');
+  const box  = document.getElementById('chosenLabels');
+
+  function redraw () {
+    box.innerHTML = '';
+    activeLabels.forEach(lbl => {
+      const pill = document.createElement('span');
+      pill.className = 'pill';
+      pill.textContent = lbl;
+
+      const btn = document.createElement('button');
+      btn.textContent = '×';
+      btn.addEventListener('click', () => {
+        activeLabels.delete(lbl);
+        redraw();
+      });
+
+      pill.prepend(btn);
+      box.appendChild(pill);
+    });
+  }
+
+  /* click on an option → add it */
+  list.addEventListener('change', () => {
+    const val = list.value;
+    if (!val || activeLabels.has(val)) return;
+
+    activeLabels.add(val);
+    list.selectedIndex = -1;   // clear selection so UI doesn’t look stuck
+    redraw();
+  });
+}
+
   
 
 
