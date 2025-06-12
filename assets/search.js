@@ -74,22 +74,23 @@
     select.appendChild(frag);
   }
 
-  /* -------------------------------
-     Form helpers
-     -------------------------------*/
-  function collectFilters() {
-    const fd = new FormData(document.getElementById('searchForm'));
-    return {
-      pomId: fd.get('pomId').trim(),
-      formula: fd.get('formula').trim(),
-      elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
-      mass: fd.get('mass').trim(),
-      charge: fd.get('charge').trim(),
-      label: fd.get('label').trim(),
-      material: fd.get('material').trim(),
-      doi: fd.get('doi').trim(),
-    };
-  }
+/* ------------------------- Form helpers ------------------------- */
+function collectFilters () {
+  const fd = new FormData(document.getElementById('searchForm'));
+  return {
+    pomId   : fd.get('pomId').trim(),
+    formula : fd.get('formula').trim(),
+    elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
+    mass    : fd.get('mass').trim(),
+    /* ▼ NEW ▼ */
+    chargeMin: fd.get('chargeMin').trim(),
+    chargeMax: fd.get('chargeMax').trim(),
+    /* ▲ NEW ▲ */
+    label   : fd.get('label').trim(),
+    material: fd.get('material').trim(),
+    doi     : fd.get('doi').trim(),
+  };
+}
 
   function matchesFilters(item, f) {
     const contains = (field, value) => String(field || '').toLowerCase().includes(value.toLowerCase());
