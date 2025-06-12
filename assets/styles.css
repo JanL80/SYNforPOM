@@ -107,7 +107,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   width: 14px;
   height: 14px;
   flex: 0 0 auto;
-  margin-top: 1px;
 }
 
 /* Single-line label that never wraps */
@@ -250,4 +249,14 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
   border-top-color: #000;            /* solid black sweep       */
 }
 
+
+
+/* --- Imprint formatting -------------------- */
+.imprint{
+    font-family: inherit;
+    color: inherit;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: center;
+}
 
