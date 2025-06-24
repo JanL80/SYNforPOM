@@ -170,7 +170,7 @@ function collectFilters () {
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
     
-     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.pomId))) { 
+     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.procedureId))) { 
         return false;}
 
     return true;
