@@ -27,7 +27,7 @@ An interactive single-page tool for browsing a curated library of polyoxometalat
 
 ## License & Citation
 
-This project is released under the CC0 License.  
+This project is released under the GNU GENERAL PUBLIC (v2.0) License.  
 
 If this tool assists your research please cite:
 
