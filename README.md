@@ -4,7 +4,7 @@ An interactive single-page tool for browsing a curated library of polyoxometalat
 
 ---
 
-## Quick-start Guide
+## Use Guide
 
 1. **Open the page** in any modern desktop or mobile browser. The full data table loads automatically, sorted A to Z by POM-ID.  
 2. **Filter** using the form above the table.  
@@ -12,7 +12,7 @@ An interactive single-page tool for browsing a curated library of polyoxometalat
    * Leave a field blank to ignore it.  
 3. **Show only synthesised entries** by ticking the checkbox. All rows lacking a procedure record disappear.  
 4. **Click a POM-ID** to pop up a floating window. An OpenAI-powered backend drafts the synthesis and the result will be displayed shortly after.  
-5. **Close** the pop-up with the × button.  
+5. **Close** the pop-up with the x button.  
 6. **Reset** the form at any time to clear all filters.  
 
 ---
