@@ -13,13 +13,29 @@
  /* ---------------------------------------------------------------
    Lazy-load Procedures.json the first time we need it
    ---------------------------------------------------------------*/
- let PROCEDURE_MAP = null;
- async function getProcedure(id) {
-   if (!PROCEDURE_MAP) {
-     PROCEDURE_MAP = await (await fetch('/data/procedures_20250526.json')).json();
-   }
-   return PROCEDURE_MAP[id];
- }
+let PROCEDURE_MAP = null;
+
+async function getProcedure (id) {
+  if (!id) return null;                       // safety-net for missing IDs
+  if (!PROCEDURE_MAP) {
+    const data = await (await fetch('/data/procedures_20250526.json')).json();
+
+    if (Array.isArray(data.procedures)) {     // { "procedures": [ … ] }   ← current
+      PROCEDURE_MAP = Object.fromEntries(
+        data.procedures.map(p => [String(p.procedure_information.id), p])
+      );
+
+    } else if (Array.isArray(data)) {         // [ … ]  (plain array)
+      PROCEDURE_MAP = Object.fromEntries(
+        data.map(p => [String(p.procedure_information.id), p])
+      );
+
+    } else {                                  // { "123": {…}, "456": … }  (flat map)
+      PROCEDURE_MAP = data;
+    }
+  }
+  return PROCEDURE_MAP[String(id)];
+}
 
 
    
