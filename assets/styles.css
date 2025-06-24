@@ -1,8 +1,6 @@
 
-
-
 :root {
-  --bg: #012e57;                        /* background color */
+  --bg: #012e57;                              /* background color */
   --white: #ffffff;
   --divider: rgba(255, 255, 255, 0.25);       /* subtle line colour */
 }
@@ -42,7 +40,7 @@ html, body {
 
 
 /* --- simple grow-to-fill utility --------------------------- */
-.flex-1 { flex: 1 1 0; }   /* 0 = base-width, so siblings split evenly */
+.flex-1 { flex: 1 1 0; }
 
 
 
@@ -54,9 +52,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Vertical divider --------------------------------------------- */
 .vertical-divider {
-  width: 1px;                  /* thin vertical bar */
+  width: 1px;
   background: var(--divider);
-  align-self: stretch;         /* fill parent height when in flex‑row   */
+  align-self: stretch;
 }
 @media (max-width: 767px) { .vertical-divider { display: none; } }
 
@@ -65,9 +63,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 /* --- HORIZONTAL DIVIDERS ----------------------------------------- */
 .horizontal-divider {
   width: 100%;
-  height: 1px;                         /* line thickness         */
-  background: var(--divider);          /* same pale-white tint   */
-  margin: 1.25rem 0;                   /* space above & below    */
+  height: 1px;
+  background: var(--divider);
+  margin: 1.25rem 0;
 }
 
 
@@ -90,11 +88,13 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 }
 #searchForm input::placeholder { color: #666; }
 
+
+
 /* --- Force the label dropdown to be solid white ------------------- */
 #searchLabel{
-  background-color:#fff;      /* white face */
-  color:#111;                 /* dark text  */
-  border:1px solid #d1d5db;   /* thin soft-grey outline (optional) */
+  background-color:#fff;
+  color:#111;
+  border:1px solid #d1d5db;
 }
 
 
@@ -109,14 +109,18 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   margin: 0.75rem 0; 
 }
 
-/* Small, fixed-size checkbox (override browser default) */
+
+
+/* --- fixed-size checkbox ------------------------- */
 #procedureFilter input[type="checkbox"] {
   width: 13px;
   height: 13px;
   flex: 0 0 auto;
 }
 
-/* Single-line label that never wraps */
+
+
+/* --- Single-line label that never wraps ----------------- */
 #procedureFilter label {
   white-space: nowrap;  
 }
@@ -128,13 +132,14 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   display:flex;
   gap:0;
 }
-
 #labelPicker select{
   flex:1 1 0;
   width:100%;
 }
 
-/* pill container → 4 pills per row, then wrap */
+
+
+/* --- pill container ------------------------------- */
 .pill-box{
   display:none;
   margin-left:1rem;
@@ -147,7 +152,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   display:grid;
 }
 
-/* individual pill */
+
+
+/* --- individual pill ------------------------------------ */
 .pill{
   position:relative;
   background:#fff;
@@ -160,7 +167,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   cursor:default;
 }
 
-/* the x button */
+
+
+/* --- the x button --------------------------------------- */
 .pill button{
   all:unset;
   position:absolute;
@@ -174,12 +183,10 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   color: #d33;
   transition:color .15s ease;
 }
-
 .pill button:hover,
 .pill button:focus{
   color:#b00000;
 }
-
 
 
 
@@ -214,15 +221,10 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 /* --- Scrollable results area -------------------------------------- */
-/*
-   Ensure your HTML wraps the <table id="resultsTable"> with:
-     <div class="table-scroll"> … </div>
-   (Replace the previous .overflow-x-auto wrapper.)
-*/
 .table-scroll {
-  max-height: 70vh;            /* vertical viewport slice */
-  overflow-y: auto;            /* vertical scroll */
-  overflow-x: auto;            /* horizontal scroll when table wider */
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: auto;
   width: 100%;
 }
 
@@ -230,20 +232,19 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Table --------------------------------------------------------- */
 #resultsTable {
-  width: max-content;          /* grow to fit columns; triggers x‑scroll */
-  min-width: 100%;             /* but never smaller than the wrapper */
+  width: max-content;
+  min-width: 100%;
   border-collapse: collapse;
-  table-layout: auto;          /* adaptive column sizing */
+  table-layout: auto;
   font-size: 0.875rem;
 }
 
-/* Sticky header */
 #resultsTable thead th {
   position: sticky;
   top: 0;
   z-index: 2;
   background: #222729;
-  white-space: nowrap;         /* keep labels on one line */
+  white-space: nowrap;
 }
 
 #resultsTable th,
@@ -251,7 +252,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   padding: 0.5rem 0.75rem;
   text-align: left;
   vertical-align: top;
-  white-space: nowrap;         /* prevent squeezing onto multiple lines */
+  white-space: nowrap;
 }
 #resultsTable tbody tr:nth-child(even) {
   background: rgba(255, 255, 255, 0.05);
@@ -272,53 +273,61 @@ dialog {
 }
 dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 
+
+
 /* --- Popup look & stacking order ------------------------------------------------ */
 #detailsPopup {
-  background: #ffffff;            /* solid white panel */
-  color: #000000;                 /* dark text so it’s readable */
-  border: 1px solid #c0c0c0;      /* thin grey border */
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #c0c0c0;
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 9999;                  /* higher than anything else */
-  width: 380px;        /* fixed width you want */
-  max-width: 90vw;     /* safety on tiny screens */
-  overflow-x: hidden;  /* prevent sideways spill */ 
+  z-index: 9999;
+  width: 380px;
+  max-width: 90vw;
+  overflow-x: hidden;
 }
+
+
 
 /* --- Wrap & safely scroll long lines inside the pop-up ------------------ */
 #detailsContent {
-  white-space: pre-wrap;    /* already default, but keep for clarity  */
-  word-break: break-word;   /* break long tokens (URLs, long IDs)     */
-  overflow-x: auto;         /* if a line truly can’t wrap, show a bar */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
 }
+
+
 
 /* --- Keep the × icon visible on the white pop-up ------------------------- */
 #detailsPopup .btn-close {
-  color: #ff4d4d;        /* show a red × all the time        */
-  opacity: 1;            /* make sure no utility class set it lower */
+  color: #ff4d4d;
+  opacity: 1;
 }
 
-/* --- hover shade over x icon -------------------*/
+
+
+/* --- hover shade over x icon -----------------------------*/
 #detailsPopup .btn-close:hover {
-  color: #d40000;        /* slightly darker red on hover     */
+  color: #d40000;
 }
 
-/* --- Force black text & spinner inside the pop-up --------- */
+
+
+/* --- Force black text & spinner inside the pop-up ----------- */
 #detailsPopup {
-  color: #000;                       /* default text colour     */
+  color: #000;
 }
-
 #detailsPopup .loading-text {
-  color: #000;                       /* explicit for the line   */
+  color: #000;
 }
-
 #detailsPopup .spinner {
-  border-color: rgba(0, 0, 0, 0.25); /* pale grey ring          */
-  border-top-color: #000;            /* solid black sweep       */
+  border-color: rgba(0, 0, 0, 0.25);
+  border-top-color: #000;
 }
 
 
 
-/* --- Imprint formatting -------------------- */
+/* --- Imprint formatting ----------------------------- */
 .imprint{
     font-family: inherit;
     color: inherit;
@@ -326,4 +335,3 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
     line-height: 1.4;
     text-align: center;
 }
-
