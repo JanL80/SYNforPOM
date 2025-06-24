@@ -1,7 +1,8 @@
-/* -------------------------------------------------------------------
-   Polyoxometalate Explorer – anchored pop-up with spinner + Netlify fetch
-   ------------------------------------------------------------------- */
+/* ------- anchored pop-up with spinner + Netlify fetch --------- */
 (() => {
+
+   
+   
   /* ---------------- Configuration -------------------------------- */
   const ENDPOINT = '/.netlify/functions/synthesize';
   const POPUP_WIDTH  = 380;  // fixed dialog width (px)
@@ -10,32 +11,30 @@
 
 
    
- /* ---------------------------------------------------------------
-   Lazy-load Procedures.json the first time we need it
-   ---------------------------------------------------------------*/
-let PROCEDURE_MAP = null;
+ /* ------------- load Procedures.json ---------------*/
+ let PROCEDURE_MAP = null;
 
-async function getProcedure (id) {
-  if (!id) return null;                       // safety-net for missing IDs
-  if (!PROCEDURE_MAP) {
-    const data = await (await fetch('/data/procedures_20250526.json')).json();
+ async function getProcedure (id) {
+   if (!id) return null;
+   if (!PROCEDURE_MAP) {
+     const data = await (await fetch('/data/procedures_20250526.json')).json();
 
-    if (Array.isArray(data.procedures)) {     // { "procedures": [ … ] }   ← current
-      PROCEDURE_MAP = Object.fromEntries(
-        data.procedures.map(p => [String(p.procedure_information.id), p])
-      );
+     if (Array.isArray(data.procedures)) {
+       PROCEDURE_MAP = Object.fromEntries(
+         data.procedures.map(p => [String(p.procedure_information.id), p])
+       );
 
-    } else if (Array.isArray(data)) {         // [ … ]  (plain array)
-      PROCEDURE_MAP = Object.fromEntries(
-        data.map(p => [String(p.procedure_information.id), p])
-      );
+     } else if (Array.isArray(data)) {
+       PROCEDURE_MAP = Object.fromEntries(
+         data.map(p => [String(p.procedure_information.id), p])
+       );
 
-    } else {                                  // { "123": {…}, "456": … }  (flat map)
-      PROCEDURE_MAP = data;
-    }
+     } else {
+       PROCEDURE_MAP = data;
+     }
+   }
+   return PROCEDURE_MAP[String(id)];
   }
-  return PROCEDURE_MAP[String(id)];
-}
 
 
    
@@ -49,9 +48,11 @@ async function getProcedure (id) {
     return;
   }
 
-  /* ---------------- Spinner styles (inject once) ------------------ */
+
+   
+  /* ---------------- Spinner styles ------------------ */
   (function injectSpinnerCSS() {
-    if (document.getElementById('spinner-styles')) return;      // already injected
+    if (document.getElementById('spinner-styles')) return;
     const style = document.createElement('style');
     style.id    = 'spinner-styles';
     style.textContent = `
@@ -69,39 +70,40 @@ async function getProcedure (id) {
     document.head.appendChild(style);
   })();
 
-  /* ---------------- Utility: position pop-up near cursor ---------- */
+
+   
+  /* ---------------- position pop-up near cursor ---------- */
   function positionPopup(clientX, clientY) {
-    /* Convert viewport ➜ document coordinates */
     const pageX = window.scrollX + clientX;
     const pageY = window.scrollY + clientY;
 
+
+     
     /* ----- Horizontal: simple right-hand offset, then clamp -------- */
     let left = pageX + OFFSET_X;
     const minLeft = window.scrollX + 8;
     const maxLeft = window.scrollX + document.documentElement.clientWidth - POPUP_WIDTH - 8;
     left = Math.min(Math.max(left, minLeft), maxLeft);
 
+
+     
     /* ----- Vertical: prefer above, fall back below ----------------- */
-    const roomAbove = clientY;                                     // px from viewport top to cursor
-    const needsAbove = dialog.offsetHeight + OFFSET_Y + 8;         // space we’d need
+    const roomAbove = clientY;
+    const needsAbove = dialog.offsetHeight + OFFSET_Y + 8;
 
     let top;
     if (roomAbove >= needsAbove) {
-      /* Enough room:  place the panel above the cursor */
       top = pageY - dialog.offsetHeight - OFFSET_Y;
     } else {
-      /* Not enough room:  flip it below the cursor */
       top = pageY + OFFSET_Y;
     }
 
-    /* Final vertical clamp so it never pokes off-screen */
     const minTop = window.scrollY + 8;
     const maxTop = window.scrollY + document.documentElement.clientHeight - dialog.offsetHeight - 8;
     top = Math.min(Math.max(top, minTop), maxTop);
 
-    /* Apply position */
     dialog.style.position = 'absolute';
-    dialog.style.margin   = '0';               // kill UA auto-centring
+    dialog.style.margin   = '0';
     dialog.style.width    = `${POPUP_WIDTH}px`;
     dialog.style.left     = `${left}px`;
     dialog.style.top      = `${top}px`;
@@ -128,7 +130,6 @@ async function getProcedure (id) {
      });
      const { text, error } = await res.json().catch(() => ({}));
 
-     /* If the status wasn’t OK, include both pieces so we see why */
      if (!res.ok) {
        return `Server error ${res.status}: ${error || text || 'no details'}`;
      }
@@ -149,6 +150,8 @@ async function getProcedure (id) {
       '<p class="loading-text">Synthesis procedure is being generated…</p>';
   }
 
+
+   
   /* ---------------- Link-click handler ---------------------------- */
   async function handleLinkClick(evt) {
     const link = evt.target.closest('.details-link');
@@ -159,23 +162,27 @@ async function getProcedure (id) {
     const record   = (window.POM_DATA || []).find(d => String(d.pomId) === recordId);
     if (!record) return;
 
-    /* Show spinner, open dialog, position near cursor */
     showLoading(recordId);
-    dialog.show();                                   // non-modal
+    dialog.show();
     positionPopup(evt.clientX, evt.clientY);
 
-    /* Fetch remote details */
     const remoteText = await fetchRemoteDetails(record);
 
-    /* Display response & re-measure height */
     contentEl.textContent = remoteText;
-    positionPopup(evt.clientX, evt.clientY);         // realign if height grew
+    positionPopup(evt.clientX, evt.clientY);
   }
 
+
+   
   /* ---------------- Close button & ESC behaviour ------------------ */
   closeBtn.addEventListener('click', () => dialog.close());
-  dialog.addEventListener('cancel', e => e.preventDefault());   // block ESC default
+  dialog.addEventListener('cancel', e => e.preventDefault());
 
+
+   
   /* ---------------- Global click listener ------------------------- */
   document.addEventListener('click', handleLinkClick, false);
+
+
+   
 })();
