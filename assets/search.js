@@ -15,7 +15,7 @@
    async function ensureProcedureSet () {
      if (PROCEDURE_SET) return PROCEDURE_SET;
    
-     const resp = await fetch('data/Procedures.json');
+     const resp = await fetch('data/procedures_20250526.json');
      const map  = await resp.json();
      PROCEDURE_SET = new Set(Object.keys(map).map(String));
      return PROCEDURE_SET;
