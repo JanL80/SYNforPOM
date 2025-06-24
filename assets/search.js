@@ -11,24 +11,24 @@
 
    
    /* ---------- load of Procedures.json -----------------------------------------------*/
-   let PROCEDURE_SET = null;
-   async function ensureProcedureSet () {
-     if (PROCEDURE_SET) return PROCEDURE_SET;
-   
-     const resp = await fetch('data/procedures_20250526.json');
-     const map  = await resp.json();
-     let ids = [];
+let PROCEDURE_SET = null;
 
-     if (Array.isArray(json.procedures)) {
-       // layout (a)
-       ids = json.procedures.map(p => p.procedure_information.id);
-     } else if (Array.isArray(json)) {
-       // layout (b)
-       ids = json.map(p => p.procedure_information.id);
-     } else {
-       // layout (c)
-       ids = Object.keys(json);
-     }
+async function ensureProcedureSet () {
+  if (PROCEDURE_SET) return PROCEDURE_SET;          // already in memory
+
+  const resp  = await fetch('data/procedures_20250526.json');
+  const data  = await resp.json();                  // ← use “data”, not “json”
+  let ids     = [];
+
+  if (Array.isArray(data.procedures)) {             // layout (a)
+    ids = data.procedures.map(p => p.procedure_information.id);
+
+  } else if (Array.isArray(data)) {                 // layout (b)
+    ids = data.map(p => p.procedure_information.id);
+
+  } else {                                          // layout (c)
+    ids = Object.keys(data);
+  }
 
   PROCEDURE_SET = new Set(ids.map(String));
   return PROCEDURE_SET;
