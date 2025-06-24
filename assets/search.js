@@ -145,8 +145,12 @@ function initLabelPicker () {
 /* ------------------------- Form helpers ------------------------- */
 function collectFilters () {
   const fd = new FormData(document.getElementById('searchForm'));
+  const rawIds = fd.get('pomId').trim();
   return {
-    pomId   : fd.get('pomId').trim(),
+    pomIds  : rawIds
+                .split(/[,\s]+/)
+                .map(s => s.trim())
+                .filter(Boolean),
     formula : fd.get('formula').trim(),
     elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
     massMin : fd.get('massMin').trim(),
