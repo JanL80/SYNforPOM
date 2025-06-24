@@ -45,7 +45,8 @@
           charge: rec['Charge'] ?? '',
           label: Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
           material: matBlock['POM Material Formula'] || '',
-          doi: matBlock['DOI'] || ''
+          doi: matBlock['DOI'] || '',
+          procedureID: matBlock['procedure_id'] || ''
         };
       });
 
