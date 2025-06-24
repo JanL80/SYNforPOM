@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,25 +7,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Polyoxometalate Explorer</title>
 
-  <!-- Global layout/utility styles (you will style these in assets/styles.css) -->
+  
+  <!-- Global layout/utility styles -->
   <link rel="stylesheet" href="assets/styles.css">
 
+  
   <!-- Search logic + UI helpers -->
   <script defer src="assets/search.js"></script>
-  <!-- Pop‑up/Netlify request helper (see brief at bottom of file) -->
   <script defer src="assets/details.js"></script>
 </head>
 <body>
+
+  
   <!-- ‑‑‑ Header & intro copy ‑‑‑ -->
   <header class="container mx-auto py-6 text-center">
     <br>
     <h1 id="pageTitle" class="text-4xl font-bold">Polyoxometalate Explorer</h1>
   </header>
 
-  <!-- horizontal rule under headline -->
+  
   <div class="horizontal-divider"></div>
 
+  
   <main class="container mx-auto flex flex-col gap-6 px-4 lg:gap-8">
+
+    
     <!-- Intro & how‑to text sit side‑by‑side on large screens, stacked on mobile -->
     <section class="flex-1 space-y-6" aria-label="About">
       <br>
@@ -37,6 +44,7 @@
       </p>
     </section>
 
+    
     <!-- Search form / filters -->
     <section class="flex-1" aria-label="Search form">
       <form id="searchForm" class="space-y-4" autocomplete="off">
@@ -97,6 +105,8 @@
           </div>
 
           <label for="searchLabel">Label</label>
+
+         
           <!-- Label picker ---------------------------------------------------->
           <div class="field-row" id="labelPicker">
             <select id="searchLabel"
@@ -104,7 +114,6 @@
             </select>
             <div id="chosenLabels" class="pill-box"></div>
           </div>
-
 
           <label for="searchMaterial">POM Material Formula</label>
           <input type="text" id="searchMaterial" name="material" placeholder="Ag3(C2)(VO3)">
@@ -130,16 +139,22 @@
        
       </form>
     </section>
+
+    
   </main>
 
+  
   <br>
+
   
   <!-- horizontal rule between filters and results -->
   <div class="horizontal-divider"></div>
 
+  
   <!-- Secondary vertical divider separates filters from results on wide viewports -->
   <div class="vertical-divider wide" aria-hidden="true"></div>
 
+  
   <!-- Results table -->
   <br>
   <section class="container mx-auto px-4 py-8" aria-label="Search results">
@@ -164,6 +179,7 @@
     </div>
   </section>
 
+  
   <br><br>
   <div class="horizontal-divider"></div>
   <br><br>
@@ -171,7 +187,7 @@
     <p id="imprint"
        class="imprint editable-text text-center"
        data-edit="imprint">
-      The Kondinski Group, 2025  –  https://chemin.at
+       The Kondinski Group, 2025  –  https://chemin.at
     </p>
     <br>
   </section>
@@ -186,5 +202,6 @@
     <pre id="detailsContent" class="whitespace-pre-wrap text-sm"></pre>
   </dialog>
 
+  
 </body>
 </html>
