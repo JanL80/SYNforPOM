@@ -1,7 +1,7 @@
 {
   "POM_BABI": {
     "POM Formula": "[PMo9V3O40]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "Mo9O40PV3",
     "Contains Elements": {
       "P": 1,
@@ -24,7 +24,7 @@
   },
   "POM_BABO": {
     "POM Formula": "[PMo9V3O40]5−",
-    "charge": -5.0,
+    "Charge": -5.0,
     "Molecular Formula": "Mo9O40PV3",
     "Contains Elements": {
       "P": 1,
@@ -47,7 +47,7 @@
   },
   "POM_BEBE": {
     "POM Formula": "[PMo11Co8O38]3−",
-    "charge": -3.0,
+    "Charge": -3.0,
     "Molecular Formula": "Co8Mo11O38P",
     "Contains Elements": {
       "P": 1,
@@ -70,7 +70,7 @@
   },
   "POM_BEBO": {
     "POM Formula": "[H2GeW12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "GeH2O40W12",
     "Contains Elements": {
       "H": 2,
@@ -93,7 +93,7 @@
   },
   "POM_BEBU": {
     "POM Formula": "[HPW12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "HO40PW12",
     "Contains Elements": {
       "H": 1,
@@ -116,7 +116,7 @@
   },
   "POM_BIBA": {
     "POM Formula": "[H2SiMo12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "H2Mo12O40Si",
     "Contains Elements": {
       "H": 2,
@@ -139,7 +139,7 @@
   },
   "POM_BIBE": {
     "POM Formula": "[HPMo12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "HMo12O40P",
     "Contains Elements": {
       "H": 1,
@@ -162,7 +162,7 @@
   },
   "POM_BIBO": {
     "POM Formula": "[HAsMo12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "AsHMo12O40",
     "Contains Elements": {
       "H": 1,
@@ -185,7 +185,7 @@
   },
   "POM_BOBI": {
     "POM Formula": "[H2SiW12O40]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "H2O40SiW12",
     "Contains Elements": {
       "H": 2,
@@ -208,7 +208,7 @@
   },
   "POM_BOBU": {
     "POM Formula": "[VNb12O40(VO2)]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "Nb12O42V2",
     "Contains Elements": {
       "V": 2,
@@ -230,7 +230,7 @@
   },
   "POM_BUBE": {
     "POM Formula": "[β2-P2W18O62]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "O62P2W18",
     "Contains Elements": {
       "P": 2,
@@ -252,7 +252,7 @@
   },
   "POM_BUBI": {
     "POM Formula": "[β2-P2W18O62]12−",
-    "charge": -12.0,
+    "Charge": -12.0,
     "Molecular Formula": "O62P2W18",
     "Contains Elements": {
       "P": 2,
@@ -274,7 +274,7 @@
   },
   "POM_BUBU": {
     "POM Formula": "[As2W19O66(H2O)]14−",
-    "charge": -14.0,
+    "Charge": -14.0,
     "Molecular Formula": "As2H2O67W19",
     "Contains Elements": {
       "As": 2,
@@ -297,7 +297,7 @@
   },
   "POM_BACE": {
     "POM Formula": "[As2W19O66(H2O)]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "As2H2O67W19",
     "Contains Elements": {
       "As": 2,
@@ -320,7 +320,7 @@
   },
   "POM_BACI": {
     "POM Formula": "[FeMo6O24H6]3−",
-    "charge": -3.0,
+    "Charge": -3.0,
     "Molecular Formula": "FeH6Mo6O24",
     "Contains Elements": {
       "Fe": 1,
@@ -343,7 +343,7 @@
   },
   "POM_BACO": {
     "POM Formula": "[FeMo6O24H6]4−",
-    "charge": -4.0,
+    "Charge": -4.0,
     "Molecular Formula": "FeH6Mo6O24",
     "Contains Elements": {
       "Fe": 1,
@@ -366,7 +366,7 @@
   },
   "POM_BACU": {
     "POM Formula": "[CoW12O40]5−",
-    "charge": -5.0,
+    "Charge": -5.0,
     "Molecular Formula": "CoO40W12",
     "Contains Elements": {
       "Co": 1,
@@ -413,7 +413,7 @@
   },
   "POM_BECA": {
     "POM Formula": "[CoW12O40]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "CoO40W12",
     "Contains Elements": {
       "Co": 1,
@@ -445,7 +445,7 @@
   },
   "POM_BECE": {
     "POM Formula": "[CH3CH(NH3)PO3)2Mo5O15]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "C2H7Mo5NPO18",
     "Contains Elements": {
       "C": 2,
@@ -470,7 +470,7 @@
   },
   "POM_BECO": {
     "POM Formula": "[(NH3CH2CH2PO3)2Mo5O15]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "C4H14Mo5N2O21P2",
     "Contains Elements": {
       "N": 2,
@@ -495,7 +495,7 @@
   },
   "POM_BECU": {
     "POM Formula": "[(CH3CH(CH3)CH(NH3)PO3)2Mo5O15]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "C8H22Mo5N2O21P2",
     "Contains Elements": {
       "C": 8,
@@ -520,7 +520,7 @@
   },
   "POM_BICA": {
     "POM Formula": "[(CH3CH2PO3)2Mo5O15]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "C4H12Mo5O21P2",
     "Contains Elements": {
       "C": 4,
@@ -544,7 +544,7 @@
   },
   "POM_BICI": {
     "POM Formula": "[(C6H5PO3)2Mo5O15]4−",
-    "charge": -4.0,
+    "Charge": -4.0,
     "Molecular Formula": "C12H10Mo5O21P2",
     "Contains Elements": {
       "C": 12,
@@ -568,7 +568,7 @@
   },
   "POM_BICO": {
     "POM Formula": "[(C6H5PO3)2Mo5O15]3−",
-    "charge": -3.0,
+    "Charge": -3.0,
     "Molecular Formula": "C12H10Mo5O21P2",
     "Contains Elements": {
       "C": 12,
@@ -592,7 +592,7 @@
   },
   "POM_BICU": {
     "POM Formula": "[Mn4(H2O)2(PW9O34)2]10−",
-    "charge": -10.0,
+    "Charge": -10.0,
     "Molecular Formula": "H4Mn4O70P2W18",
     "Contains Elements": {
       "Mn": 4,
@@ -616,7 +616,7 @@
   },
   "POM_BOCA": {
     "POM Formula": "[Fe4(H2O)2(PW9O34)2]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "Fe4H4O70P2W18",
     "Contains Elements": {
       "Fe": 4,
@@ -645,7 +645,7 @@
   },
   "POM_BOCI": {
     "POM Formula": "[Co4(H2O)2(PW9O34)2]10−",
-    "charge": -10.0,
+    "Charge": -10.0,
     "Molecular Formula": "Co4H4O70P2W18",
     "Contains Elements": {
       "Co": 4,
@@ -669,7 +669,7 @@
   },
   "POM_BOCO": {
     "POM Formula": "[Zn4(H2O)2(PW9O34)2]10−",
-    "charge": -10.0,
+    "Charge": -10.0,
     "Molecular Formula": "H4O70P2W18Zn4",
     "Contains Elements": {
       "Zn": 4,
@@ -693,7 +693,7 @@
   },
   "POM_BOCU": {
     "POM Formula": "[Cd4Cl2(B-α-AsW9O34)2]12−",
-    "charge": -12.0,
+    "Charge": -12.0,
     "Molecular Formula": "As2B2Cd4Cl2O68W18",
     "Contains Elements": {
       "Cd": 4,
@@ -718,7 +718,7 @@
   },
   "POM_BUCA": {
     "POM Formula": "[Zn4(H2O)2(GeW9O34)2]12−",
-    "charge": -12.0,
+    "Charge": -12.0,
     "Molecular Formula": "Ge2H4O70W18Zn4",
     "Contains Elements": {
       "Zn": 4,
@@ -742,7 +742,7 @@
   },
   "POM_BUCE": {
     "POM Formula": "[Mn4(H2O)2(GeW9O34)2]12−",
-    "charge": -12.0,
+    "Charge": -12.0,
     "Molecular Formula": "Ge2H4Mn4O70W18",
     "Contains Elements": {
       "Mn": 4,
@@ -766,7 +766,7 @@
   },
   "POM_BUCO": {
     "POM Formula": "[Cu4(H2O)2(GeW9O34)2]13−",
-    "charge": -13.0,
+    "Charge": -13.0,
     "Molecular Formula": "Cu4Ge2H4O70W18",
     "Contains Elements": {
       "Cu": 4,
@@ -790,7 +790,7 @@
   },
   "POM_BUCU": {
     "POM Formula": "[Fe4W9O34(H2O)2(FeW6O26)2]19−",
-    "charge": -19.0,
+    "Charge": -19.0,
     "Molecular Formula": "Fe6H4O88W21",
     "Contains Elements": {
       "Fe": 6,
@@ -813,7 +813,7 @@
   },
   "POM_BADA": {
     "POM Formula": "[Ni4(H2O)2(α-NiW9O34)2]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "H4Ni6O70W18",
     "Contains Elements": {
       "Ni": 6,
@@ -836,7 +836,7 @@
   },
   "POM_BADI": {
     "POM Formula": "[Zn4(H2O)2(P2W15O56)2]16−",
-    "charge": -16.0,
+    "Charge": -16.0,
     "Molecular Formula": "H4O114P4W30Zn4",
     "Contains Elements": {
       "Zn": 4,
@@ -860,7 +860,7 @@
   },
   "POM_BADO": {
     "POM Formula": "[Co4(H2O)2(P2W15O56)2]16−",
-    "charge": -16.0,
+    "Charge": -16.0,
     "Molecular Formula": "Co4H4O114P4W30",
     "Contains Elements": {
       "Co": 4,
@@ -884,7 +884,7 @@
   },
   "POM_BEDA": {
     "POM Formula": "[Cu4(H2O)2(P2W15O56)2]16−",
-    "charge": -16.0,
+    "Charge": -16.0,
     "Molecular Formula": "Cu4H4O114P4W30",
     "Contains Elements": {
       "Cu": 4,
@@ -908,7 +908,7 @@
   },
   "POM_BEDI": {
     "POM Formula": "[(NaOH2)(FeOH2)Fe2(P2W15O56)2]14−",
-    "charge": -14.0,
+    "Charge": -14.0,
     "Molecular Formula": "Fe3H4NaO114P4W30",
     "Contains Elements": {
       "Fe": 3,
@@ -933,7 +933,7 @@
   },
   "POM_BEDU": {
     "POM Formula": "[Ni4(H2O)2(P2W15O56)2]16−",
-    "charge": -16.0,
+    "Charge": -16.0,
     "Molecular Formula": "H4Ni4O114P4W30",
     "Contains Elements": {
       "Ni": 4,
@@ -962,7 +962,7 @@
   },
   "POM_BIDA": {
     "POM Formula": "[(NiOH)2Fe2(P2W15O56)2]14−",
-    "charge": -14.0,
+    "Charge": -14.0,
     "Molecular Formula": "Fe2H2Ni2O114P4W30",
     "Contains Elements": {
       "Ni": 2,
@@ -987,7 +987,7 @@
   },
   "POM_BIDI": {
     "POM Formula": "[Mn2(V2O7)]",
-    "charge": 0.0,
+    "Charge": 0.0,
     "Molecular Formula": "Mn2O7V2",
     "Contains Elements": {
       "Mn": 2,
@@ -1009,7 +1009,7 @@
   },
   "POM_BIDO": {
     "POM Formula": "[V10O26]4−",
-    "charge": -4.0,
+    "Charge": -4.0,
     "Molecular Formula": "O26V10",
     "Contains Elements": {
       "V": 10,
@@ -1030,7 +1030,7 @@
   },
   "POM_BIDU": {
     "POM Formula": "[V13V3O42(Cl)]8−",
-    "charge": -8.0,
+    "Charge": -8.0,
     "Molecular Formula": "ClO42V16",
     "Contains Elements": {
       "Cl": 1,
@@ -1052,7 +1052,7 @@
   },
   "POM_BODA": {
     "POM Formula": "[HNb6O19]8−",
-    "charge": -8.0,
+    "Charge": -8.0,
     "Molecular Formula": "HNb6O19",
     "Contains Elements": {
       "H": 1,
@@ -1074,7 +1074,7 @@
   },
   "POM_BODI": {
     "POM Formula": "[HNb6O19]7−",
-    "charge": -7.0,
+    "Charge": -7.0,
     "Molecular Formula": "HNb6O19",
     "Contains Elements": {
       "H": 1,
@@ -1116,7 +1116,7 @@
   },
   "POM_BODU": {
     "POM Formula": "[Nb32O96H28]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "H28Nb32O96",
     "Contains Elements": {
       "Nb": 32,
@@ -1138,7 +1138,7 @@
   },
   "POM_BUDE": {
     "POM Formula": "[β-AsMo12O40]7−",
-    "charge": -7.0,
+    "Charge": -7.0,
     "Molecular Formula": "AsMo12O40",
     "Contains Elements": {
       "As": 1,
@@ -1160,7 +1160,7 @@
   },
   "POM_BUDI": {
     "POM Formula": "Ba15Ta15N33Cl424−",
-    "charge": -24.0,
+    "Charge": -24.0,
     "Molecular Formula": "Ba15Cl4N33Ta15",
     "Contains Elements": {
       "Ba": 15,
@@ -1183,7 +1183,7 @@
   },
   "POM_BUDO": {
     "POM Formula": "[β-AsMo12O40]3−",
-    "charge": -3.0,
+    "Charge": -3.0,
     "Molecular Formula": "AsMo12O40",
     "Contains Elements": {
       "As": 1,
@@ -1205,7 +1205,7 @@
   },
   "POM_BUDU": {
     "POM Formula": "[Mo40O128]24−",
-    "charge": -24.0,
+    "Charge": -24.0,
     "Molecular Formula": "Mo40O128",
     "Contains Elements": {
       "Mo": 40,
@@ -1226,7 +1226,7 @@
   },
   "POM_BAFA": {
     "POM Formula": "[W6O19]2−",
-    "charge": -2.0,
+    "Charge": -2.0,
     "Molecular Formula": "O19W6",
     "Contains Elements": {
       "W": 6,
@@ -1262,7 +1262,7 @@
   },
   "POM_BAFE": {
     "POM Formula": "[W6O19]3−",
-    "charge": -3.0,
+    "Charge": -3.0,
     "Molecular Formula": "O19W6",
     "Contains Elements": {
       "W": 6,
@@ -1283,7 +1283,7 @@
   },
   "POM_BAFO": {
     "POM Formula": "[H2W12O40]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "H2O40W12",
     "Contains Elements": {
       "H": 2,
@@ -1325,7 +1325,7 @@
   },
   "POM_BEFE": {
     "POM Formula": "[H2W12O40]11−",
-    "charge": -11.0,
+    "Charge": -11.0,
     "Molecular Formula": "H2O40W12",
     "Contains Elements": {
       "H": 2,
@@ -1347,7 +1347,7 @@
   },
   "POM_BEFI": {
     "POM Formula": "[H2W12O40]12−",
-    "charge": -12.0,
+    "Charge": -12.0,
     "Molecular Formula": "H2O40W12",
     "Contains Elements": {
       "H": 2,
@@ -1369,7 +1369,7 @@
   },
   "POM_BEFU": {
     "POM Formula": "Cl3Ge(CH2)2COOH",
-    "charge": 0.0,
+    "Charge": 0.0,
     "Molecular Formula": "C3H5Cl3GeO2",
     "Contains Elements": {
       "Cl": 3,
@@ -1391,7 +1391,7 @@
   },
   "POM_BIFA": {
     "POM Formula": "[Nd(α1-P2W17O61)2]17−",
-    "charge": -17.0,
+    "Charge": -17.0,
     "Molecular Formula": "NdO122P4W34",
     "Contains Elements": {
       "Nd": 1,
@@ -1424,7 +1424,7 @@
   },
   "POM_BIFE": {
     "POM Formula": "[Ho(α1-P2W17O61)2]17−",
-    "charge": -17.0,
+    "Charge": -17.0,
     "Molecular Formula": "HoO122P4W34",
     "Contains Elements": {
       "Ho": 1,
@@ -1447,7 +1447,7 @@
   },
   "POM_BIFI": {
     "POM Formula": "[Er(α1-P2W17O61)2]17−",
-    "charge": -17.0,
+    "Charge": -17.0,
     "Molecular Formula": "ErO122P4W34",
     "Contains Elements": {
       "Er": 1,
@@ -1470,7 +1470,7 @@
   },
   "POM_BIFO": {
     "POM Formula": "[La(α1-P2W17O61)2]17−",
-    "charge": -17.0,
+    "Charge": -17.0,
     "Molecular Formula": "LaO122P4W34",
     "Contains Elements": {
       "La": 1,
@@ -1493,7 +1493,7 @@
   },
   "POM_BOFA": {
     "POM Formula": "[PVW11O40]4−",
-    "charge": -4.0,
+    "Charge": -4.0,
     "Molecular Formula": "O40PVW11",
     "Contains Elements": {
       "P": 1,
@@ -1516,7 +1516,7 @@
   },
   "POM_BOFE": {
     "POM Formula": "[PVW11O40]5−",
-    "charge": -5.0,
+    "Charge": -5.0,
     "Molecular Formula": "O40PVW11",
     "Contains Elements": {
       "P": 1,
@@ -1544,7 +1544,7 @@
   },
   "POM_BOFI": {
     "POM Formula": "[Fe13O4F24(OMe)12]5−",
-    "charge": -5.0,
+    "Charge": -5.0,
     "Molecular Formula": "F24Fe13O16",
     "Contains Elements": {
       "Fe": 13,
@@ -1564,7 +1564,7 @@
   },
   "POM_BOFO": {
     "POM Formula": "[SiVW11O40]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "O40SiVW11",
     "Contains Elements": {
       "Si": 1,
@@ -1597,7 +1597,7 @@
   },
   "POM_BOFU": {
     "POM Formula": "[γ-SiW10Mo2O40]4−",
-    "charge": -4.0,
+    "Charge": -4.0,
     "Molecular Formula": "Mo2O40SiW10",
     "Contains Elements": {
       "Mo": 2,
@@ -1620,7 +1620,7 @@
   },
   "POM_BUFA": {
     "POM Formula": "[γ-SiW10Mo2O40]6−",
-    "charge": -6.0,
+    "Charge": -6.0,
     "Molecular Formula": "Mo2O40SiW10",
     "Contains Elements": {
       "Mo": 2,
@@ -1643,7 +1643,7 @@
   },
   "POM_BUFE": {
     "POM Formula": "[Ta4O6(SiW9Ta3O40)4]20−",
-    "charge": -20.0,
+    "Charge": -20.0,
     "Molecular Formula": "O166Si4Ta16W36",
     "Contains Elements": {
       "Ta": 16,
@@ -1666,7 +1666,7 @@
   },
   "POM_BUFI": {
     "POM Formula": "[MnW11O37]5−",
-    "charge": -5.0,
+    "Charge": -5.0,
     "Molecular Formula": "MnO37W11",
     "Contains Elements": {
       "Mn": 1,
@@ -1688,7 +1688,7 @@
   },
   "POM_BUFU": {
     "POM Formula": "[MnW11O37]8−",
-    "charge": -8.0,
+    "Charge": -8.0,
     "Molecular Formula": "MnO37W11",
     "Contains Elements": {
       "Mn": 1,
