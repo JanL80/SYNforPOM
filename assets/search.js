@@ -145,7 +145,7 @@ function initLabelPicker () {
 /* ------------------------- Form helpers ------------------------- */
 function collectFilters () {
   const fd = new FormData(document.getElementById('searchForm'));
-  const rawIds = fd.get('pomId').trim();
+  const rawIds = (fd.get('pomId') || '').trim();
   return {
     pomIds  : rawIds
                 .split(/[,\s]+/)
@@ -165,9 +165,14 @@ function collectFilters () {
 }
 
   function matchesFilters(item, f) {
-    const contains = (field, value) => String(field || '').toLowerCase().includes(value.toLowerCase());
+    const contains = (field, value) =>
+         String(field || '').toLowerCase().includes(value.toLowerCase());
 
-    if (f.pomId && !contains(item.pomId, f.pomId)) return false;
+    if (f.pomIds.length) {
+      const idLower = String(item.pomId).toLowerCase();
+      const hit = f.pomIds.some(needle => idLower.includes(needle.toLowerCase()));
+      if (!hit) return false;}
+     
     if (f.formula && !contains(item.formula, f.formula)) return false;
 
     if (f.elements.length) {
