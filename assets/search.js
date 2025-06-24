@@ -194,8 +194,13 @@ function collectFilters () {
     const linkKey = CONFIG.linkKey;
     tbody.innerHTML = '';
 
+    const sorted = [...dataset].sort((a, b) =>
+        String(a.pomId).localeCompare(String(b.pomId), undefined,           
+          { numeric: true, sensitivity: 'base' })
+    );
+
     const frag = document.createDocumentFragment();
-    dataset.forEach(item => {
+    sorted.forEach(item => {
       const tr = document.createElement('tr');
       const elementsCell = Array.isArray(item.elements) ? item.elements.join(', ') : item.elements || '';
       tr.innerHTML = `
