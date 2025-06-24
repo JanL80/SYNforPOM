@@ -5,7 +5,7 @@
 (() => {
 
   const CONFIG = {
-    linkKey: document.getElementById('resultsTable').dataset.linkKey || 'pomId',
+    linkKey: document.getElementById('resultsTable').dataset.linkKey || 'procedureID',
     dataFile: 'data/Curated_POMs.json',
   };
 
