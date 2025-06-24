@@ -312,7 +312,7 @@
     "POM Material Formula": {
       "0c39bb3a-3935-41ab-a88b-8f82f509cf36": {
         "POM Material Formula": "H2Rb4[As2W19O66(H2O)]·34H2O",
-        "procedure_id": "procedure-203",
+        "procedure_id": "procedure-203-1",
         "DOI": "10.1002/9780470132586.ch19; 10.1021/ja00397a012"
       }
     },
@@ -2264,7 +2264,7 @@
     "POM Material Formula": {
       "b2b6b948-3e2a-4388-a26f-6d3a8556036d": {
         "POM Material Formula": "Dodecatungstophosphoric acid",
-        "procedure_id": "procedure-41-3",
+        "procedure_id": "procedure-41-2",
         "DOI": "10.1039/jr9580002597"
       },
       "31002115-9d7b-4ad6-a114-a60b37268e22": {
@@ -5873,7 +5873,7 @@
     "POM Material Formula": {
       "2cffebb3-4dd4-425e-8fb7-a3653ea918e9": {
         "POM Material Formula": "Na6[MnMo6O32]",
-        "procedure_id": "procedure-233-3",
+        "procedure_id": "procedure-233-2",
         "DOI": "10.1016/0022-1902(66)80324-x"
       }
     },
