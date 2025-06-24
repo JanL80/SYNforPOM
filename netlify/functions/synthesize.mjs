@@ -1,24 +1,21 @@
-/*  netlify/functions/synthesize.mjs
-    Classic Netlify Function – ES Module version
-    Requires:  "type": "module"  in /package.json  OR  .mjs extension
-*/
 
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY           // ← make sure this env-var is set
+  apiKey: process.env.OPENAI_API_KEY
 });
 
-// ---------------------------------------------------------------------------
-// Netlify will call this “handler” for every POST /.netlify/functions/synthesize
-// ---------------------------------------------------------------------------
 export async function handler(event) {
-  // ---------- 1. METHOD GUARD --------------------------------------------
+
+    
+    
+  // ---------- METHOD GUARD --------------------------------------------
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
-  // ---------- 2. PAYLOAD PARSE + VALIDATION ------------------------------
+    
+  // ---------- PAYLOAD PARSE + VALIDATION ------------------------------
   let pomId, procedure;
   try {
     ({ pomId, procedure } = JSON.parse(event.body ?? "{}"));
@@ -30,10 +27,11 @@ export async function handler(event) {
     return { statusCode: 400, body: "Missing pomId or procedure" };
   }
 
-  // ---------- 3. CALL OPENAI --------------------------------------------
+    
+  // ---------- CALL OPENAI --------------------------------------------
   try {
     const chat = await openai.chat.completions.create({
-      model: "gpt-4o-mini",                   // model-selection
+      model: "gpt-4o-mini",
       messages: [
         {
           role: "system",
@@ -52,14 +50,17 @@ export async function handler(event) {
 
     const synthesis = chat.choices[0].message.content.trim();
 
-    // ---------- 4. SUCCESS RESPONSE -------------------------------------
+      
+    // ---------- SUCCESS RESPONSE -------------------------------------
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text: synthesis })
     };
   } catch (err) {
-    // ---------- 5. ERROR RESPONSE (bubble message up to caller) ---------
+
+      
+    // ---------- ERROR RESPONSE ---------------------------------------
     console.error("OpenAI error →", err);
     return {
       statusCode: 500,
