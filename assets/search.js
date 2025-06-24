@@ -1,43 +1,48 @@
-/* -------------------------------------------------------------------
-   Polyoxometalate Explorer – search & table rendering logic
-   ------------------------------------------------------------------- */
-
+/* ---------------------- search & table rendering logic ---------------------------- */
 (() => {
 
+
   const CONFIG = {
-    linkKey: document.getElementById('resultsTable').dataset.linkKey || 'procedureID',
+    linkKey : document.getElementById('resultsTable').dataset.linkKey || 'procedureID',
     dataFile: 'data/Curated_POMs.json',
   };
 
-   
-   /* ---------- load of Procedures.json -----------------------------------------------*/
-let PROCEDURE_SET = null;
 
-async function ensureProcedureSet () {
-  if (PROCEDURE_SET) return PROCEDURE_SET;          // already in memory
 
-  const resp  = await fetch('data/procedures_20250526.json');
-  const data  = await resp.json();                  // ← use “data”, not “json”
-  let ids     = [];
 
-  if (Array.isArray(data.procedures)) {             // layout (a)
-    ids = data.procedures.map(p => p.procedure_information.id);
+  /* -------------- load of Procedures json --------------------------------*/
 
-  } else if (Array.isArray(data)) {                 // layout (b)
-    ids = data.map(p => p.procedure_information.id);
+  let PROCEDURE_SET = null;
 
-  } else {                                          // layout (c)
-    ids = Object.keys(data);
+  async function ensureProcedureSet () {
+    if (PROCEDURE_SET) return PROCEDURE_SET;
+
+    const resp = await fetch('data/procedures_20250526.json');
+    const data = await resp.json();
+    let ids = [];
+
+    if (Array.isArray(data.procedures)) {
+      ids = data.procedures.map(p => p.procedure_information.id);
+
+    } else if (Array.isArray(data)) {
+      ids = data.map(p => p.procedure_information.id);
+
+    } else {
+      ids = Object.keys(data);
+    }
+
+    PROCEDURE_SET = new Set(ids.map(String));
+    return PROCEDURE_SET;
   }
 
-  PROCEDURE_SET = new Set(ids.map(String));
-  return PROCEDURE_SET;
-}
-
   let fullDataset = [];
-   
+
+
+
+
   /* ------------------ Fetch JSON dataset & bootstrap -------------------------------*/
-  async function init() {
+
+  async function init () {
     try {
       const response = await fetch(CONFIG.dataFile);
       if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
@@ -48,16 +53,16 @@ async function ensureProcedureSet () {
           ? Object.values(rec['POM Material Formula'])[0]
           : {};
         return {
-          pomId: id,
-          formula: rec['POM Formula'] || rec['Molecular Formula'] || '',
-          elements: rec['Contains Elements']
+          pomId      : id,
+          formula    : rec['POM Formula'] || rec['Molecular Formula'] || '',
+          elements   : rec['Contains Elements']
             ? Object.keys(rec['Contains Elements'])
             : [],
-          mass: rec['Molecular Mass'] || '',
-          charge: rec['Charge'] ?? '',
-          label: Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
-          material: matBlock['POM Material Formula'] || '',
-          doi: matBlock['DOI'] || '',
+          mass       : rec['Molecular Mass'] || '',
+          charge     : rec['Charge'] ?? '',
+          label      : Array.isArray(rec['Labels']) ? rec['Labels'][0] : rec['Labels'] || '',
+          material   : matBlock['POM Material Formula'] || '',
+          doi        : matBlock['DOI'] || '',
           procedureID: matBlock['procedure_id'] || ''
         };
       });
@@ -73,18 +78,22 @@ async function ensureProcedureSet () {
     }
   }
 
+
+
+
   /* -------------- Populate the "Label" <select> -------------------------------*/
-  function hydrateLabelSelect() {
+
+  function hydrateLabelSelect () {
     const select = document.getElementById('searchLabel');
     if (!select) return;
-     
-    const anyOpt        = document.createElement('option');
-    anyOpt.value        = '';
-    anyOpt.textContent  = 'Any'; 
-    anyOpt.selected     = true;    
-    anyOpt.dataset.any  = 'true'; 
+
+    const anyOpt       = document.createElement('option');
+    anyOpt.value       = '';
+    anyOpt.textContent = 'Any';
+    anyOpt.selected    = true;
+    anyOpt.dataset.any = 'true';
     select.appendChild(anyOpt);
-     
+
     const uniqueLabels = [...new Set(fullDataset.map(d => d.label).filter(Boolean))].sort();
     const frag = document.createDocumentFragment();
     uniqueLabels.forEach(label => {
@@ -96,116 +105,125 @@ async function ensureProcedureSet () {
     select.appendChild(frag);
   }
 
+  let activeLabels = new Set();
 
-   let activeLabels = new Set();
- 
-function initLabelPicker () {
-  const list = document.getElementById('searchLabel');
-  const box  = document.getElementById('chosenLabels');
+  function initLabelPicker () {
+    const list = document.getElementById('searchLabel');
+    const box = document.getElementById('chosenLabels');
 
-  function redraw () {
-    box.innerHTML = '';
-    activeLabels.forEach(lbl => {
-      const pill = document.createElement('span');
-      pill.className = 'pill';
-      pill.textContent = lbl;
+    function redraw () {
+      box.innerHTML = '';
+      activeLabels.forEach(lbl => {
+        const pill = document.createElement('span');
+        pill.className = 'pill';
+        pill.textContent = lbl;
 
-      const btn = document.createElement('button');
-      btn.textContent = '×';
-      btn.addEventListener('click', () => {
-        activeLabels.delete(lbl);
-        redraw();
+        const btn = document.createElement('button');
+        btn.textContent = '×';
+        btn.addEventListener('click', () => {
+          activeLabels.delete(lbl);
+          redraw();
+        });
+
+        pill.prepend(btn);
+        box.appendChild(pill);
       });
+    }
 
-      pill.prepend(btn);
-      box.appendChild(pill);
+    list.addEventListener('change', () => {
+      const val = list.value;
+      if (val === '') {
+        activeLabels.clear();
+        box.innerHTML = '';
+        list.selectedIndex = 0;
+        return;
+      }
+      if (activeLabels.has(val)) return;
+
+      activeLabels.add(val);
+      redraw();
     });
   }
 
-  /* click on an option → add it */
-  list.addEventListener('change', () => {
-  const val = list.value;
-  if (val === '') {
-    activeLabels.clear();
-    box.innerHTML = '';
-    list.selectedIndex = 0;
-    return;
+
+
+
+  /* ------------------------- Form helpers -------------------------*/
+
+  function collectFilters () {
+    const fd = new FormData(document.getElementById('searchForm'));
+    const rawIds = (fd.get('pomId') || '').trim();
+    return {
+      pomIds     : rawIds
+        .split(/[,\s]+/)
+        .map(s => s.trim())
+        .filter(Boolean),
+      formula    : fd.get('formula').trim(),
+      elements   : fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
+      massMin    : fd.get('massMin').trim(),
+      massMax    : fd.get('massMax').trim(),
+      chargeMin  : fd.get('chargeMin').trim(),
+      hasProcedure: fd.has('hasProcedure'),
+      chargeMax  : fd.get('chargeMax').trim(),
+      labels     : [...activeLabels],
+      material   : fd.get('material').trim(),
+      doi        : fd.get('doi').trim(),
+    };
   }
-  if (activeLabels.has(val)) return;
 
-    activeLabels.add(val);
-    redraw();
-  });
-}
-
-  
-
-
-   
-/* ------------------------- Form helpers ------------------------- */
-function collectFilters () {
-  const fd = new FormData(document.getElementById('searchForm'));
-  const rawIds = (fd.get('pomId') || '').trim();
-  return {
-    pomIds  : rawIds
-                .split(/[,\s]+/)
-                .map(s => s.trim())
-                .filter(Boolean),
-    formula : fd.get('formula').trim(),
-    elements: fd.get('elements').split(',').map(e => e.trim()).filter(Boolean),
-    massMin : fd.get('massMin').trim(),
-    massMax : fd.get('massMax').trim(),
-    chargeMin: fd.get('chargeMin').trim(),
-    hasProcedure: fd.has('hasProcedure'),
-    chargeMax: fd.get('chargeMax').trim(),
-    labels : [...activeLabels],
-    material: fd.get('material').trim(),
-    doi     : fd.get('doi').trim(),
-  };
-}
-
-  function matchesFilters(item, f) {
+  function matchesFilters (item, f) {
     const contains = (field, value) =>
-         String(field || '').toLowerCase().includes(value.toLowerCase());
+      String(field || '').toLowerCase().includes(value.toLowerCase());
 
     if (f.pomIds.length) {
       const idLower = String(item.pomId).toLowerCase();
       const hit = f.pomIds.some(needle => idLower.includes(needle.toLowerCase()));
-      if (!hit) return false;}
-     
+      if (!hit) return false;
+    }
+
     if (f.formula && !contains(item.formula, f.formula)) return false;
 
     if (f.elements.length) {
       const itemEls = Array.isArray(item.elements)
         ? item.elements.map(e => e.toLowerCase())
         : String(item.elements || '').toLowerCase().split(/[\\s,]+/);
-      for (const el of f.elements) if (!itemEls.includes(el.toLowerCase())) return false;}
+      for (const el of f.elements) if (!itemEls.includes(el.toLowerCase())) return false;
+    }
 
     if ((f.massMin && Number(item.mass) < Number(f.massMin)) ||
-         (f.massMax && Number(item.mass) > Number(f.massMax))) {
-        return false;}
+      (f.massMax && Number(item.mass) > Number(f.massMax))) {
+      return false;
+    }
+
     if ((f.chargeMin && Number(item.charge) < Number(f.chargeMin)) ||
-         (f.chargeMax && Number(item.charge) > Number(f.chargeMax))) {
-        return false;}
+      (f.chargeMax && Number(item.charge) > Number(f.chargeMax))) {
+      return false;
+    }
+
     if (f.labels.length && !f.labels.includes(item.label)) return false;
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
-    
-     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.procedureID))) { 
-        return false;}
+
+    if (f.hasProcedure && !PROCEDURE_SET.has(String(item.procedureID))) {
+      return false;
+    }
 
     return true;
   }
 
+
+
+
   /* -------------------------- Render table rows -------------------------------*/
-  function renderTable(dataset) {
+
+  function renderTable (dataset) {
     const tbody = document.querySelector('#resultsTable tbody');
     const linkKey = CONFIG.linkKey;
     tbody.innerHTML = '';
 
     const sorted = [...dataset].sort((a, b) =>
-        String(a.pomId).localeCompare(String(b.pomId), undefined,           
-          { numeric: true, sensitivity: 'base' })
+      String(a.pomId).localeCompare(String(b.pomId), undefined,
+        { numeric: true, sensitivity: 'base' })
     );
 
     const frag = document.createDocumentFragment();
@@ -227,14 +245,18 @@ function collectFilters () {
     tbody.appendChild(frag);
   }
 
+
+
+
   /* ------------------------ Bind form submit / reset -------------------------------*/
-  function bindFormEvents() {
+
+  function bindFormEvents () {
     const form = document.getElementById('searchForm');
     form.addEventListener('submit', async e => {
-       e.preventDefault();
-       const filters = collectFilters();
-       if (filters.hasProcedure) await ensureProcedureSet();
-       renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
+      e.preventDefault();
+      const filters = collectFilters();
+      if (filters.hasProcedure) await ensureProcedureSet();
+      renderTable(fullDataset.filter(item => matchesFilters(item, filters)));
     });
     form.addEventListener('reset', () => {
       activeLabels.clear();
@@ -243,10 +265,11 @@ function collectFilters () {
       [...list.options].forEach(o => (o.selected = false));
       list.selectedIndex = 0;
       setTimeout(() => renderTable(fullDataset), 0);
-});
-
+    });
   }
 
-  /* Kick it off */
+
+
+
   document.addEventListener('DOMContentLoaded', init);
 })();
