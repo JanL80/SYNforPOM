@@ -16,7 +16,7 @@
  let PROCEDURE_MAP = null;
  async function getProcedure(id) {
    if (!PROCEDURE_MAP) {
-     PROCEDURE_MAP = await (await fetch('/data/Procedures.json')).json();
+     PROCEDURE_MAP = await (await fetch('/data/procedures_20250526.json')).json();
    }
    return PROCEDURE_MAP[id];
  }
