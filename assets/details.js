@@ -99,7 +99,7 @@
       
      const body = {
        pomId:     record.pomId,
-       procedure: await getProcedure(record.pomId)
+       procedure: await getProcedure(record.procedureID)
      };
 
      if (!body.procedure) {
