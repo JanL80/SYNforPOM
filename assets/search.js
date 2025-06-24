@@ -17,10 +17,22 @@
    
      const resp = await fetch('data/procedures_20250526.json');
      const map  = await resp.json();
-     PROCEDURE_SET = new Set(Object.keys(map).map(String));
-     return PROCEDURE_SET;
-   }
+     let ids = [];
 
+     if (Array.isArray(json.procedures)) {
+       // layout (a)
+       ids = json.procedures.map(p => p.procedure_information.id);
+     } else if (Array.isArray(json)) {
+       // layout (b)
+       ids = json.map(p => p.procedure_information.id);
+     } else {
+       // layout (c)
+       ids = Object.keys(json);
+     }
+
+  PROCEDURE_SET = new Set(ids.map(String));
+  return PROCEDURE_SET;
+}
 
   let fullDataset = [];
    
@@ -170,7 +182,7 @@ function collectFilters () {
     if (f.material && !contains(item.material, f.material)) return false;
     if (f.doi && !contains(item.doi, f.doi)) return false;
     
-     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.procedureId))) { 
+     if (f.hasProcedure && !PROCEDURE_SET.has(String(item.procedureID))) { 
         return false;}
 
     return true;
