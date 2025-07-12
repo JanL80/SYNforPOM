@@ -273,3 +273,24 @@
 
   document.addEventListener('DOMContentLoaded', init);
 })();
+
+
+
+
+  /* ------------------------ Video Section -------------------------------*/
+  
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.getElementById('videoSection');
+  const toggle  = document.getElementById('videoToggle');
+  const video   = document.getElementById('customVideo');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = section.classList.toggle('open');
+
+    if (!isOpen) {
+      video.pause();
+    }
+  });
+
+});
+
