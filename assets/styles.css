@@ -335,3 +335,54 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
     line-height: 1.4;
     text-align: center;
 }
+
+
+
+/* --- Video section -------------------------- */
+#videoSection {
+  margin-top: 2rem;
+}
+
+.video-toggle {
+  display: flex;
+  width : 100%;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 auto;
+}
+
+.toggle-label{
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  color: #fcb328;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #666;
+  transition: transform 0.3s ease;
+}
+
+.triangle.left  { margin-right: 0.5rem; }
+.triangle.right { margin-left: 0.5rem; }
+
+.video-container {
+  display: none;
+  margin-top: 1rem;
+}
+
+#videoSection.open .video-container {
+  display: block;
+}
+#videoSection.open .triangle {
+  transform: rotate(180deg);
+}
+
