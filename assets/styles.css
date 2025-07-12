@@ -1,0 +1,392 @@
+
+:root {
+  --bg: #012e57;                              /* background color */
+  --white: #ffffff;
+  --divider: rgba(255, 255, 255, 0.25);       /* subtle line colour */
+}
+
+
+
+/* --- Reset & base -------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--white);
+  background: var(--bg);
+}
+
+
+
+/* --- Utility containers (Tailwind‑like) ---------------------------- */
+.container { max-width: 1200px; width: 100%; margin-inline: auto; }
+.mx-auto { margin-inline: auto; }
+.py-6 { padding-block: 1.5rem; }
+.py-8 { padding-block: 2rem; }
+.px-4 { padding-inline: 1rem; }
+.pt-2 { padding-top: 0.5rem; }
+.gap-6 { gap: 1.5rem; }
+.gap-8 { gap: 2rem; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.text-center { text-align: center; }
+
+@media (min-width: 1024px) {
+  .lg\:flex-row { flex-direction: row; }
+  .lg\:gap-8   { gap: 2rem; }
+}
+
+
+
+/* --- simple grow-to-fill utility --------------------------- */
+.flex-1 { flex: 1 1 0; }
+
+
+
+/* --- Headline & intro copy ---------------------------------------- */
+h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
+.editable-text { line-height: 1.6; }
+
+
+
+/* --- Vertical divider --------------------------------------------- */
+.vertical-divider {
+  width: 1px;
+  background: var(--divider);
+  align-self: stretch;
+}
+@media (max-width: 767px) { .vertical-divider { display: none; } }
+
+
+
+/* --- HORIZONTAL DIVIDERS ----------------------------------------- */
+.horizontal-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--divider);
+  margin: 1.25rem 0;
+}
+
+
+
+/* --- Forms --------------------------------------------------------- */
+#searchForm label {
+  display: block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+#searchForm input,
+#searchForm select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: #000;
+}
+#searchForm input::placeholder { color: #666; }
+
+
+
+/* --- Force the label dropdown to be solid white ------------------- */
+#searchLabel{
+  background-color:#fff;
+  color:#111;
+  border:1px solid #d1d5db;
+}
+
+
+
+/* --- Generic form-row layout (re-use for every field line) --------- */
+.field-row,                  
+#procedureFilter {        
+  display: flex;
+  align-items: baseline;         
+  gap: 0.5rem;                 
+  width: 100%;                
+  margin: 0.75rem 0; 
+}
+
+
+
+/* --- fixed-size checkbox ------------------------- */
+#procedureFilter input[type="checkbox"] {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+
+
+/* --- Single-line label that never wraps ----------------- */
+#procedureFilter label {
+  white-space: nowrap;  
+}
+
+
+
+/* --- Label picker ------------------------------------------ */
+#labelPicker{
+  display:flex;
+  gap:0;
+}
+#labelPicker select{
+  flex:1 1 0;
+  width:100%;
+}
+
+
+
+/* --- pill container ------------------------------- */
+.pill-box{
+  display:none;
+  margin-left:1rem;
+  grid-template-columns:repeat(4,max-content);
+  gap:.5rem;
+  padding:.25rem 0;
+}
+
+.pill-box:not(:empty){
+  display:grid;
+}
+
+
+
+/* --- individual pill ------------------------------------ */
+.pill{
+  position:relative;
+  background:#fff;
+  color:#111;
+  font-size:.875rem;
+  line-height:1.35;
+  padding:.25rem .75rem .25rem 1.75rem;
+  border-radius:9999px;
+  white-space:nowrap;
+  cursor:default;
+}
+
+
+
+/* --- the x button --------------------------------------- */
+.pill button{
+  all:unset;
+  position:absolute;
+  left:.45rem;
+  top:0; bottom:0;
+  width:.9rem;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+  color: #d33;
+  transition:color .15s ease;
+}
+.pill button:hover,
+.pill button:focus{
+  color:#b00000;
+}
+
+
+
+/* --- Buttons ------------------------------------------------------- */
+.btn-primary,
+.btn-secondary,
+.btn-close {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+.btn-primary { background: #1e90ff; color: var(--white); }
+.btn-primary:hover { background: #1580e0; }
+
+.btn-secondary {
+  background: #ab353b;
+  color: var(--white);
+}
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+
+.btn-close {
+  background: none;
+  color: var(--white);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+.btn-close:hover { color: #ff8080; }
+
+
+
+/* --- Scrollable results area -------------------------------------- */
+.table-wrapper {
+  overflow-x: auto;
+}
+.table-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+}
+
+
+
+/* --- Table --------------------------------------------------------- */
+#resultsTable {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  font-size: 0.875rem;
+}
+
+#resultsTable thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #222729;
+  white-space: nowrap;
+  transform: translateZ(0);
+}
+
+#resultsTable th,
+#resultsTable td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+#resultsTable tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.05);
+}
+#resultsTable a.details-link {
+  color: #fcb328;
+  text-decoration: none;
+}
+
+
+
+/* --- Popup <dialog> ------------------------------------------------ */
+dialog {
+  border: none;
+  background: var(--bg);
+  color: var(--white);
+  border-radius: 8px;
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+
+
+
+/* --- Popup look & stacking order ------------------------------------------------ */
+#detailsPopup {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #c0c0c0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 9999;
+  width: 380px;
+  max-width: 90vw;
+  overflow-x: hidden;
+}
+
+
+
+/* --- Wrap & safely scroll long lines inside the pop-up ------------------ */
+#detailsContent {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+
+
+/* --- Keep the × icon visible on the white pop-up ------------------------- */
+#detailsPopup .btn-close {
+  color: #ff4d4d;
+  opacity: 1;
+}
+
+
+
+/* --- hover shade over x icon -----------------------------*/
+#detailsPopup .btn-close:hover {
+  color: #d40000;
+}
+
+
+
+/* --- Force black text & spinner inside the pop-up ----------- */
+#detailsPopup {
+  color: #000;
+}
+#detailsPopup .loading-text {
+  color: #000;
+}
+#detailsPopup .spinner {
+  border-color: rgba(0, 0, 0, 0.25);
+  border-top-color: #000;
+}
+
+
+
+/* --- Imprint formatting ----------------------------- */
+.imprint{
+    font-family: inherit;
+    color: inherit;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+
+
+/* --- Video section -------------------------- */
+#videoSection {
+  margin-top: 2rem;
+}
+
+.video-toggle {
+  display: flex;
+  width : 100%;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  margin: 0 auto;
+}
+
+.toggle-label{
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  color: #fcb328;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #666;
+  transition: transform 0.3s ease;
+}
+
+.triangle.left  { margin-right: 0.5rem; }
+.triangle.right { margin-left: 0.5rem; }
+
+.video-container {
+  display: none;
+  margin-top: 1rem;
+}
+
+#videoSection.open .video-container {
+  display: block;
+}
+#videoSection.open .triangle {
+  transform: rotate(180deg);
+}
+
