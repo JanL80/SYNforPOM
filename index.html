@@ -31,6 +31,30 @@
   
   <main class="container mx-auto flex flex-col gap-6 px-4 lg:gap-8">
 
+
+    <!-- Video Player -->
+    <section id="videoSection" class="container mx-auto px-4">
+      <!-- Toggle bar -->
+      <div id="videoToggle" class="video-toggle">
+        <div class="triangle left"></div>
+        <span class="toggle-label">⇨ Click here to toggle Introductory Video Player ⇦</span>
+        <div class="triangle right"></div>
+      </div>
+
+      <!-- Hidden video container -->
+      <div id="videoContainer" class="video-container">
+        <video
+          id="customVideo"
+          controls
+          preload="metadata"
+          width="100%"
+          aria-label="Introductory video">
+          <source src="assets/video/intro.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </section>
+    
     
     <!-- Intro & how‑to text sit side‑by‑side on large screens, stacked on mobile -->
     <section class="flex-1 space-y-6" aria-label="About">
@@ -44,7 +68,7 @@
       </p>
     </section>
 
-    
+
     <!-- Search form / filters -->
     <section class="flex-1" aria-label="Search form">
       <form id="searchForm" class="space-y-4" autocomplete="off">
