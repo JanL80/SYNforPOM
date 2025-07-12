@@ -225,7 +225,12 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: auto;
+  position: relative;
   width: 100%;
+}
+
+.table-wrapper {
+  overflow-x: auto;
 }
 
 
