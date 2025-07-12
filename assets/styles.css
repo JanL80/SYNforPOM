@@ -221,13 +221,10 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 /* --- Scrollable results area -------------------------------------- */
-.table-wrapper {
-  overflow-x: auto;
-}
 .table-scroll {
   max-height: 70vh;
   overflow-y: auto;
-  position: relative;
+  overflow-x: auto;
   width: 100%;
 }
 
@@ -248,7 +245,6 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   z-index: 2;
   background: #222729;
   white-space: nowrap;
-  transform: translateZ(0);
 }
 
 #resultsTable th,
