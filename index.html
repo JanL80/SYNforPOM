@@ -181,26 +181,29 @@
   <!-- Results table -->
   <br>
   <section class="container mx-auto px-4 py-8" aria-label="Search results">
-    <div class="table-scroll">
-      <table id="resultsTable" class="w-full text-sm" data-link-key="pomId">
-        <thead>
-          <tr>
-            <th scope="col">POM‑ID</th>
-            <th scope="col">Elements</th>
-            <th scope="col">Molecular Mass</th>
-            <th scope="col">Charge</th>
-            <th scope="col">Label</th>
-            <th scope="col">Formula</th>
-            <th scope="col">POM Material Formula</th>
-            <th scope="col">DOI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- JS (search.js) populates rows here -->
-        </tbody>
-      </table>
+    <div class="table-wrapper">
+      <div class="table-scroll">
+        <table id="resultsTable" class="w-full text-sm" data-link-key="pomId">
+          <thead>
+            <tr>
+              <th scope="col">POM-ID</th>
+              <th scope="col">Elements</th>
+              <th scope="col">Molecular Mass</th>
+              <th scope="col">Charge</th>
+              <th scope="col">Label</th>
+              <th scope="col">Formula</th>
+              <th scope="col">POM Material Formula</th>
+              <th scope="col">DOI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- JS (search.js) populates rows here -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
+
 
   
   <br><br>
