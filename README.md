@@ -6,7 +6,7 @@ An interactive single-page tool for browsing a curated library of polyoxometalat
 
 ## Use Guide
 
-1. **Open the page** in any modern desktop or mobile browser. The full data table loads automatically, sorted A to Z by POM-ID.  
+1. **Open the page** in any modern desktop or mobile browser (at https://synforpom.netlify.app). The full data table loads automatically, sorted A to Z by POM-ID.  
 2. **Filter** using the form above the table.  
    * Multiple POM-IDs can be separated with commas or spaces.  
    * Leave a field blank to ignore it.  
