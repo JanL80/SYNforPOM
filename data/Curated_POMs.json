@@ -1853,7 +1853,7 @@
       "42e78e39-bf65-40d0-9481-d00a63ae3c3d": {
         "POM Material Formula": "K8[β2-SiW11O39]·14H2O",
         "procedure_id": "procedure-10",
-        "DOI": "N/A"
+        "DOI": "10.26554/sti.2016.1.1.8-15"
       }
     },
     "OLD_KEY": "POM_Proc_5"
@@ -1961,7 +1961,7 @@
       "a725e9f5-78c3-4363-b97a-ff5e7f476032": {
         "POM Material Formula": "(n-Bu4N)4[α-GeW12O40]",
         "procedure_id": "procedure-17",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic00144a006"
       }
     },
     "OLD_KEY": "POM_Proc_9"
@@ -4377,7 +4377,7 @@
       "8d737b8e-4350-4519-8028-fb12b6565682": {
         "POM Material Formula": "(NH4)6[α-As2W18O62]⋅15H2O",
         "procedure_id": "procedure-163",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic990596v; 10.1139/v91-221; 10.1002/chin.199207029"
       }
     },
     "OLD_KEY": "POM_Proc_122"
@@ -9591,7 +9591,7 @@
       "62d8e498-6982-4a4a-85d4-3b5695d72195": {
         "POM Material Formula": "['K13[La(b2-SiW11O39)2]·22H2O']",
         "procedure_id": "procedure-506",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_414"
@@ -9614,7 +9614,7 @@
       "dc2af4f4-c3b8-4765-a79a-19967a989c11": {
         "POM Material Formula": "['K13[Ce(b2-SiW11O39)2]·25.5H2O']",
         "procedure_id": "procedure-507",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_415"
@@ -9637,7 +9637,7 @@
       "320bef2c-9fb4-4b0c-8506-70070084a12a": {
         "POM Material Formula": "['K13[Sm(b2-SiW11O39)2]·29.5H2O']",
         "procedure_id": "procedure-508",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_416"
@@ -9660,7 +9660,7 @@
       "d79d4926-c1ce-457b-8189-d89c319f762f": {
         "POM Material Formula": "['K13[Eu(b2-SiW11O39)2]·27H2O']",
         "procedure_id": "procedure-509",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_417"
@@ -9683,7 +9683,7 @@
       "043efe68-b1af-4d90-957d-2ee67d340ed0": {
         "POM Material Formula": "['K13[Gd(b2-SiW11O39)2]·27H2O']",
         "procedure_id": "procedure-510",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_418"
@@ -9706,7 +9706,7 @@
       "bb5ee8df-3dae-496c-a213-c75b2099ae33": {
         "POM Material Formula": "K13[Tb(β2-SiW11O39)2]·29.5H2O",
         "procedure_id": "procedure-511",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_419"
@@ -9729,7 +9729,7 @@
       "fd8bfec0-54d6-4181-81c6-6d0d3aa67617": {
         "POM Material Formula": "K13[Yb(β2-SiW11O39)2]·26H2O",
         "procedure_id": "procedure-512",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_420"
@@ -9752,7 +9752,7 @@
       "11cc6de5-87cf-479b-8fc5-2334347720bf": {
         "POM Material Formula": "K13[Lu(β2-SiW11O39)2]·27H2O",
         "procedure_id": "procedure-513",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic061737d"
       }
     },
     "OLD_KEY": "POM_Proc_421"
@@ -9775,7 +9775,7 @@
       "b11ec6ad-d29b-4757-870e-475e31054562": {
         "POM Material Formula": "(NH4)11[Ce(PMo11O39)2]·xH2O",
         "procedure_id": "procedure-515",
-        "DOI": "N/A"
+        "DOI": "10.1039/B301995K"
       }
     },
     "OLD_KEY": "POM_Proc_433"
@@ -9798,7 +9798,7 @@
       "5fd8cb4e-fe1e-4cc5-aac9-edd5ef5dcd55": {
         "POM Material Formula": "(NH4)11[Sm(PMo11O39)2]·xH2O",
         "procedure_id": "procedure-516",
-        "DOI": "N/A"
+        "DOI": "10.1039/B301995K"
       }
     },
     "OLD_KEY": "POM_Proc_434"
@@ -9821,7 +9821,7 @@
       "dde022e8-64ea-4db0-9523-201b2da691ef": {
         "POM Material Formula": "(NH4)11[Dy(PMo11O39)2]·xH2O",
         "procedure_id": "procedure-517",
-        "DOI": "N/A"
+        "DOI": "10.1039/B301995K"
       }
     },
     "OLD_KEY": "POM_Proc_435"
@@ -9844,14 +9844,14 @@
       "81605be5-1fc1-4b21-b1c4-4739869b5c48": {
         "POM Material Formula": "(NH4)11[Lu(PMo11O39)2]·xH2O",
         "procedure_id": "procedure-518",
-        "DOI": "N/A"
+        "DOI": "10.1039/B301995K"
       }
     },
     "OLD_KEY": "POM_Proc_436"
   },
   "POM_CIDA": {
-    "POM Formula": "[[H2PW11O39]2]1−",
-    "Molecular Formula": "H2O78P2W22",
+    "POM Formula": "[[Hf(PW11O39)2]10−",
+    "Molecular Formula": "HfO78P2W22",
     "Contains Elements": {
       "O": 78,
       "H": 2,
@@ -9865,9 +9865,9 @@
     ],
     "POM Material Formula": {
       "b935a7fb-5d64-442c-bde8-9abdced41e6b": {
-        "POM Material Formula": "[(CH3)2NH2]10[H2PW11O39]2·8H2O",
+        "POM Material Formula": "[(CH3)2NH2]10[Hf(PW11O39)2]·8H2O",
         "procedure_id": "procedure-519",
-        "DOI": "N/A"
+        "DOI": "10.1002/chem.200701160"
       }
     },
     "OLD_KEY": "POM_Proc_437"
@@ -9890,7 +9890,7 @@
       "d69af183-cd5f-4bee-ac0d-64326b798728": {
         "POM Material Formula": "(NH4)5KLi[α1-Ce(P2W17O61)]·9H2O",
         "procedure_id": "procedure-520",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic0014383"
       }
     },
     "OLD_KEY": "POM_Proc_438"
@@ -9913,7 +9913,7 @@
       "8e1213f1-2c32-4b30-8747-df318dae1f0e": {
         "POM Material Formula": "K4[H3O]3[Eu(α1-P2W17O61)2]·4KCl·64H2O",
         "procedure_id": "procedure-521-1",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic980384i"
       }
     },
     "OLD_KEY": "POM_Proc_439"
@@ -9936,7 +9936,7 @@
       "8e04e0ab-5bec-4ed8-b888-f82fbb5e557e": {
         "POM Material Formula": "K16[U(α1-P2W17O61)]·32H2O",
         "procedure_id": "procedure-522-1",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_444"
@@ -9959,7 +9959,7 @@
       "88ead838-e9ab-4f88-93f5-4cbe36f1c726": {
         "POM Material Formula": "K16[Eu(α2-P2W17O61)]·32H2O",
         "procedure_id": "procedure-522-2",
-        "DOI": "N/A"
+        "DOI": "10.1016/j.molstruc.2013.01.067"
       }
     },
     "OLD_KEY": "POM_Proc_445"
@@ -9982,13 +9982,13 @@
       "6ae70bab-7934-40a8-928e-07b1b4509a10": {
         "POM Material Formula": "K16[Th(α1-P2W17O61)2]·H2O",
         "procedure_id": "procedure-523",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_446"
   },
   "POM_CUDA": {
-    "POM Formula": "[Yb(α2-P2W17O61)2]1−",
+    "POM Formula": "[Yb(α2-P2W17O61)2]17−",
     "Molecular Formula": "O122P4W34Yb",
     "Contains Elements": {
       "O": 122,
@@ -10003,9 +10003,9 @@
     ],
     "POM Material Formula": {
       "73bf8a27-e140-46e0-adc2-dd8503c2a1f3": {
-        "POM Material Formula": "H[Yb(α2-P2W17O61)2]·44H2O",
+        "POM Material Formula": "K16H[Yb(α2-P2W17O61)2]·44H2O",
         "procedure_id": "procedure-524",
-        "DOI": "N/A"
+        "DOI": "10.1016/j.molstruc.2004.02.002"
       }
     },
     "OLD_KEY": "POM_Proc_447"
@@ -10028,12 +10028,12 @@
       "833f5348-f3e1-4c86-81db-8f7c633213b0": {
         "POM Material Formula": "K10H6[Th(α2-P2W17O61)2]3·26H2O",
         "procedure_id": "procedure-525",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       },
       "132dfae0-025a-4fd5-beab-48ba0f008077": {
         "POM Material Formula": "K16[Th(α2-P2W17O61)2]·H2O",
         "procedure_id": "procedure-530",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_448"
@@ -10056,7 +10056,7 @@
       "e34930b4-90e2-41e2-a163-6b12b3adc95b": {
         "POM Material Formula": "K12H4[U(α2-P2W17O61)2]·32H2O",
         "procedure_id": "procedure-526",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_449"
@@ -10079,7 +10079,7 @@
       "7d16992d-56f8-49d5-9c34-cf64f24f1420": {
         "POM Material Formula": "K16[Np(α2-P2W17O61)2]·42H2O",
         "procedure_id": "procedure-527",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_450"
@@ -10102,7 +10102,7 @@
       "c4bff5ec-9f8c-4b90-bf58-2720cc4787b5": {
         "POM Material Formula": "K16[Pu(α2-P2W17O61)2]·19H2O",
         "procedure_id": "procedure-528",
-        "DOI": "N/A"
+        "DOI": "10.1021/ic900710c"
       }
     },
     "OLD_KEY": "POM_Proc_451"
@@ -10125,7 +10125,7 @@
       "0527aa07-3f2f-4535-ac03-079b98ab5d4b": {
         "POM Material Formula": "(NH4)17[Ce(α2-P2W17O61)2]·H2O",
         "procedure_id": "procedure-532",
-        "DOI": "N/A"
+        "DOI": "10.1039/b105967j"
       }
     },
     "OLD_KEY": "POM_Proc_454"
@@ -10148,7 +10148,7 @@
       "31954dc7-6327-46fa-9a54-f1fc6b925233": {
         "POM Material Formula": "K17[Ce(P2Mo17O61)2]",
         "procedure_id": "procedure-534-1",
-        "DOI": "N/A"
+        "DOI": "10.4209/aaqr.2019.10.0540"
       }
     },
     "OLD_KEY": "POM_Proc_456"
@@ -10171,7 +10171,7 @@
       "8d81e369-b9b0-4a23-86ab-f4f9ee956aac": {
         "POM Material Formula": "K17[Pr(P2Mo17O61)2]",
         "procedure_id": "procedure-534-2",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_457"
@@ -10194,7 +10194,7 @@
       "c17828a0-4849-41ac-83ea-b52c3511a276": {
         "POM Material Formula": "K17[Nd(P2Mo17O61)2]",
         "procedure_id": "procedure-534-3",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_458"
@@ -10217,7 +10217,7 @@
       "4352e0fa-093f-45ea-b290-d346c90bffa0": {
         "POM Material Formula": "K17[Sm(P2Mo17O61)2]",
         "procedure_id": "procedure-534-4",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_459"
@@ -10240,7 +10240,7 @@
       "7cab6c35-a158-4a02-9557-ce45e54d8f51": {
         "POM Material Formula": "K17[Tb(P2Mo17O61)2]",
         "procedure_id": "procedure-534-5",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_460"
@@ -10263,7 +10263,7 @@
       "5e0b3bd2-f6b5-42e0-a6a9-bf80b6d7aa3e": {
         "POM Material Formula": "K17[Yb(P2Mo17O61)2]",
         "procedure_id": "procedure-534-6",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_461"
@@ -10286,7 +10286,7 @@
       "af7119bd-d812-4cd0-a9af-30c67533f9b0": {
         "POM Material Formula": "K17[Gd(P2Mo17O61)2]",
         "procedure_id": "procedure-534-7",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_462"
@@ -10309,7 +10309,7 @@
       "75afe043-bf05-4d7b-bea7-6a5fb54f89d2": {
         "POM Material Formula": "K17[Eu(P2Mo17O61)2]",
         "procedure_id": "procedure-534-8",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_463"
@@ -10332,7 +10332,7 @@
       "12b5c831-e804-4fa8-9d79-338774b57ba2": {
         "POM Material Formula": "K17[La(P2Mo17O61)2]",
         "procedure_id": "procedure-534-9",
-        "DOI": "N/A"
+        "DOI": "10.1016/S0925-8388(99)00736-7"
       }
     },
     "OLD_KEY": "POM_Proc_464"
