@@ -208,7 +208,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   background: #ab353b;
   color: var(--white);
 }
-.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+.btn-secondary:hover { background: #731f23; }
 
 .btn-close {
   background: none;
