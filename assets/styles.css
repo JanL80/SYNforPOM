@@ -192,8 +192,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Buttons ------------------------------------------------------- */
 .btn-primary,
-.btn-secondary,
-.btn-close {
+.btn-secondary {
+  width: 120px;
+  text-align: center;
   cursor: pointer;
   border: none;
   border-radius: 4px;
@@ -208,7 +209,16 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   background: #ab353b;
   color: var(--white);
 }
-.btn-secondary:hover { background: #731f23; }
+.btn-secondary:hover { background: #85252a; }
+
+.btn-close {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
 
 .btn-close {
   background: none;
@@ -217,6 +227,10 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   line-height: 1;
 }
 .btn-close:hover { color: #ff8080; }
+
+.btn-primary + .btn-secondary {
+  margin-left: 3px;
+}
 
 
 
