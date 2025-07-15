@@ -59,12 +59,13 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 
-/* --- HORIZONTAL DIVIDERS ----------------------------------------- */
+/* --- Horizontal divider ----------------------------------------- */
 .horizontal-divider {
-  width: 75%;
+  width: 80%;
   height: 1px;
   background: var(--divider);
   margin: 1.25rem 0;
+  align-items: center;
 }
 
 
