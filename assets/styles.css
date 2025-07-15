@@ -61,7 +61,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- HORIZONTAL DIVIDERS ----------------------------------------- */
 .horizontal-divider {
-  width: 100%;
+  width: 75%;
   height: 1px;
   background: var(--divider);
   margin: 1.25rem 0;
