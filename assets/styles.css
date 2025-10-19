@@ -18,6 +18,33 @@ html, body {
 
 
 
+/* --- Dark slab behind all content, above blue bg ---------------- */
+body { position: relative; }
+body::before {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 32px;
+  bottom: 32px;
+  background: #121517;
+  z-index: 0;
+  box-shadow:
+    0 8px 24px rgba(0,0,0,.35) inset,
+    0 8px 32px rgba(0,0,0,.25);
+  pointer-events: none;
+}
+
+/* lift all children above the slab */
+body > * { position: relative; z-index: 1; }
+
+/* tighter margins on small screens */
+@media (max-width: 640px) {
+  body::before { top: 16px; bottom: 16px; }
+}
+
+
+
 /* --- Utility containers (Tailwind‑like) ---------------------------- */
 .container { max-width: 1200px; width: 100%; margin-inline: auto; }
 .mx-auto { margin-inline: auto; }
