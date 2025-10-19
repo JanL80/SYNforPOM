@@ -194,6 +194,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 .btn-primary,
 .btn-secondary {
   width: 120px;
+  line-height: 1.2;
   text-align: center;
   cursor: pointer;
   border: none;
@@ -249,7 +250,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Scrollable results area -------------------------------------- */
 .table-scroll {
-  max-height: 70vh;
+  max-height: 120vh;
   overflow-y: auto;
   overflow-x: auto;
   width: 100%;
