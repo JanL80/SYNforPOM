@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scale = Math.min(1, slabInner / DESIGN);
 
     // apply scale
-    root.style.transform = `translateX(-50%) scale(${scale})`;
+    root.style.transform = `scale(${scale})`;    
     const rect = root.getBoundingClientRect();
     root.style.minHeight = `${rect.height / (scale || 1)}px`;
   }
