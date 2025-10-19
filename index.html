@@ -145,6 +145,28 @@
           <input type="text" id="searchDoi" name="doi" placeholder="10.1021/acs.inorgchem.9b00264">
         </fieldset>
 
+
+
+        <!-- Controls row ABOVE the "Only show POMs..." toggle -->
+        <br>
+        <div class="controls-row" id="language-row">
+          <label for="languageInput" class="control-label">Procedure Language</label>
+          <input
+            id="languageInput"
+            name="language"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            value="English"
+            placeholder="e.g., English, Deutsch, Español"
+            class="control-input"
+            aria-describedby="languageHelp"
+          />
+          <small id="languageHelp" class="muted">Used for formatting the generated procedure.</small>
+        </div>
+
+
+
         <div id="procedureFilter">
           <input  type="checkbox"
                   id="searchHasProcedure"
