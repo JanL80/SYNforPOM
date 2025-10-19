@@ -300,10 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------ Scaling -------------------------------*/
 
 (function fitToSlab(){
-  const root = document.getElementById('fitRoot');
+  const root  = document.getElementById('fitRoot');
   const frame = document.getElementById('fitFrame');
-  
-  if (!root) return;
+  if (!root || !frame) return;
 
   const DESIGN = parseInt(getComputedStyle(document.documentElement)
                   .getPropertyValue('--design-width')) || 1200;
@@ -317,10 +316,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const slabInner = Math.min(window.innerWidth - 2*slabGap, slabMax);
     const scale = Math.min(1, slabInner / DESIGN);
 
-    // apply scale
-    root.style.transform = `translateX(-50%) scale(${scale})`;
-    const rect = root.getBoundingClientRect();
-    frame.style.minHeight = `${rect.height / (scale || 1)}px`;
+    frame.style.setProperty('--fit-scale', String(scale));
+
+    const scaledHeight = root.scrollHeight * (scale || 1);
+    frame.style.minHeight = `${scaledHeight}px`;
   }
 
   window.addEventListener('resize', apply, { passive: true });
