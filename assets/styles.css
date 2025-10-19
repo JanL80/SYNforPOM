@@ -320,7 +320,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Scrollable results area -------------------------------------- */
 .table-scroll {
-  max-height: 120vh;
+  max-height: 118vh;
   overflow-y: auto;
   overflow-x: auto;
   width: 100%;
