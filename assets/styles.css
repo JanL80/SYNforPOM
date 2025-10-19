@@ -19,28 +19,38 @@ html, body {
 
 
 /* --- Dark slab behind all content, above blue bg ---------------- */
+:root{
+  --slab-max-width: 1280px;   /* width of the slab */
+  --slab-h-gap: 24px;
+  --slab-v-gap: 32px;
+}
+
 body { position: relative; }
-body::before {
+body::before{
   content: "";
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 32px;
-  bottom: 32px;
+  top: var(--slab-v-gap);
+  bottom: var(--slab-v-gap);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 2 * var(--slab-h-gap)), var(--slab-max-width));
   background: #121517;
-  z-index: 0;
+  z-index: 0;                 /* behind everything else */
   box-shadow:
     0 8px 24px rgba(0,0,0,.35) inset,
     0 8px 32px rgba(0,0,0,.25);
   pointer-events: none;
 }
 
-/* lift all children above the slab */
+/* page content above the slab */
 body > * { position: relative; z-index: 1; }
 
 /* tighter margins on small screens */
-@media (max-width: 640px) {
-  body::before { top: 16px; bottom: 16px; }
+@media (max-width: 640px){
+  :root{
+    --slab-h-gap: 12px;
+    --slab-v-gap: 16px;
+  }
 }
 
 
