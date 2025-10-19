@@ -39,10 +39,14 @@ html, body {
   max-width: min(calc(100% - 2 * var(--slab-h-gap)), var(--slab-max-width));
   margin: 0 auto;
   position: relative;
+  overflow: visible;
 }
 #fitRoot{
   width: var(--design-width);
-  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
   transform-origin: top left;                   /* anchor */
   transform: scale(var(--fit-scale));
 }
