@@ -42,6 +42,7 @@ html, body {
 }
 #fitRoot{
   width: var(--design-width);
+  margin: 0 auto;
   transform-origin: top left;                   /* anchor */
   transform: scale(var(--fit-scale));
 }
