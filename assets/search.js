@@ -317,14 +317,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const scale = Math.min(1, slabInner / DESIGN);
 
     frame.style.setProperty('--fit-scale', String(scale));
-    const h = root.getBoundingClientRect().height;
-    frame.style.minHeight = `${scaledHeight}px`;
+    requestAnimationFrame(() => {
+      const h = root.getBoundingClientRect().height;
+      frame.style.height = `${Math.ceil(h)}px`;
+    });
   }
 
   window.addEventListener('resize', apply, { passive: true });
   window.addEventListener('orientationchange', apply);
   document.addEventListener('DOMContentLoaded', apply);
   apply();
+
+  const ro = new ResizeObserver(() => {
+    const h = root.getBoundingClientRect().height;
+    frame.style.height = `${Math.ceil(h)}px`;
+  });
+  ro.observe(root);
+  
 })();
 
 
