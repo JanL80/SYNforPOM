@@ -2,6 +2,7 @@
   --bg: #012e57;                              /* background color */
   --white: #ffffff;
   --divider: rgba(255, 255, 255, 0.25);       /* subtle line colour */
+  --design-width: 1200px;                     /* layout width for fit scaling */
 }
 
 
@@ -29,6 +30,13 @@ html, body {
 html, body {
   height: auto;
   min-height: 100%;
+}
+
+/* scaling wrapper for small screens */
+#fitRoot {
+  width: var(--design-width);
+  margin: 0 auto;
+  transform-origin: top center;
 }
 
 body { position: relative; }
