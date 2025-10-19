@@ -201,6 +201,24 @@ async function fetchRemoteDetails(record) {
   
   closeBtn.addEventListener('click', () => dialog.close());
   dialog.addEventListener('cancel', e => e.preventDefault());
+
+
+
+
+  /* ----------------- Dismiss when clicking outside + on Esc ----------------- */
+
+  document.addEventListener('pointerdown', (e) => {
+    if (!dialog.open) return;
+    if (dialog.contains(e.target)) return;            // ignore inside clicks
+    dialog.close();
+  });
+
+  dialog.addEventListener('pointerdown', (e) => e.stopPropagation());
+
+  // Pressing Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dialog.open) dialog.close();
+  });
   
   
   
