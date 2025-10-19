@@ -294,3 +294,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+
+
+  /* ------------------------ Scaling -------------------------------*/
+
+(function fitToSlab(){
+  const root = document.getElementById('fitRoot');
+  if (!root) return;
+
+  const DESIGN = parseInt(getComputedStyle(document.documentElement)
+                  .getPropertyValue('--design-width')) || 1200;
+  const slabMax = parseInt(getComputedStyle(document.documentElement)
+                  .getPropertyValue('--slab-max-width')) || 1280;
+  const slabGap = parseInt(getComputedStyle(document.documentElement)
+                  .getPropertyValue('--slab-h-gap')) || 24;
+
+  function apply() {
+    // slab inner width = min(viewport - side gaps, slab max)
+    const slabInner = Math.min(window.innerWidth - 2*slabGap, slabMax);
+    const scale = Math.min(1, slabInner / DESIGN);
+
+    // apply scale
+    root.style.transform = `scale(${scale})`;
+
+    const rect = root.getBoundingClientRect();
+    root.style.minHeight = `${rect.height / (scale || 1)}px`;
+  }
+
+  window.addEventListener('resize', apply, { passive: true });
+  window.addEventListener('orientationchange', apply);
+  document.addEventListener('DOMContentLoaded', apply);
+  apply();
+})();
