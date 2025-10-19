@@ -161,14 +161,19 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 
 /* --- Generic form-row layout (re-use for every field line) --------- */
-.field-row,                  
-#procedureFilter {
-  align-items: center;
+.field-row {
   display: flex;
-  align-items: baseline;         
-  gap: 0.5rem;                 
-  width: 100%;                
-  margin: 0.75rem 0; 
+  align-items: baseline;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.75rem 0;
+}
+#procedureFilter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.75rem 0;
 }
 
 
