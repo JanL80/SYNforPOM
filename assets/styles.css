@@ -477,3 +477,29 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
   transform: rotate(180deg);
 }
 
+
+
+/* --- Display on Moblie Support ---------------- */
+/* base font scaleing on small screens */
+html { font-size: clamp(14px, 1.6vw, 16px); } /* MDN clamp() */
+#searchForm input,
+#searchForm select,
+.btn-primary,
+.btn-secondary {
+  min-height: 44px;
+}
+.btn-primary, .btn-secondary { padding: 0.6rem 1rem; }
+
+/* tighten page gutters on small screens */
+@media (max-width: 640px) {
+  .container { padding-inline: 12px; }
+}
+
+@media (max-width: 640px) {
+  #resultsTable th, #resultsTable td { white-space: normal; }
+  #resultsTable { font-size: 0.8rem; }
+}
+
+img, video { max-width: 100%; height: auto; }
+
+
