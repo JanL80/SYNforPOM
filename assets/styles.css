@@ -33,12 +33,14 @@ html, body {
 }
 
 /* scaling wrapper for small screens */
-#fitRoot {
+#fitFrame{
+  width: min(calc(100% - 2 * var(--slab-h-gap)), var(--slab-max-width));
+  margin: 0 auto;
+}
+#fitRoot{
   width: var(--design-width);
-  position: relative;
-  left: 50%;
-  margin: 0;
-  transform-origin: top left;
+  margin: 0 auto;
+  transform-origin: top center;
 }
 
 body { position: relative; }
