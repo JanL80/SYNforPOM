@@ -317,8 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scale = Math.min(1, slabInner / DESIGN);
 
     frame.style.setProperty('--fit-scale', String(scale));
-
-    const scaledHeight = root.scrollHeight * (scale || 1);
+    const h = root.getBoundingClientRect().height;
     frame.style.minHeight = `${scaledHeight}px`;
   }
 
@@ -327,3 +326,5 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('DOMContentLoaded', apply);
   apply();
 })();
+
+
