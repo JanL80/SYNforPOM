@@ -365,6 +365,28 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 
 
 
+/* --- generic controls row ----------------------------- */
+.controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.control-label { font-weight: 600; }
+.control-input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--border, #ccc);
+  border-radius: 6px;
+  min-width: 12rem;
+  width: clamp(12rem, 30vw, 22rem);
+}
+
+#language-row { margin-bottom: 0.25rem; } /* sits just above the toggle */
+
+
+
 /* --- Video section -------------------------- */
 #videoSection {
   margin-top: 2rem;
