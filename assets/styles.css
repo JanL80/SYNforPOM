@@ -162,7 +162,8 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Generic form-row layout (re-use for every field line) --------- */
 .field-row,                  
-#procedureFilter {        
+#procedureFilter {
+  align-items: center;
   display: flex;
   align-items: baseline;         
   gap: 0.5rem;                 
@@ -174,6 +175,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- fixed-size checkbox ------------------------- */
 #procedureFilter input[type="checkbox"] {
+  margin: 0;
   width: 13px;
   height: 13px;
   flex: 0 0 auto;
@@ -183,7 +185,9 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
 
 /* --- Single-line label that never wraps ----------------- */
 #procedureFilter label {
-  white-space: nowrap;  
+  margin-top: 0;
+  display: inline;
+  white-space: nowrap;
 }
 
 
