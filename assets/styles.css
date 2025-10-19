@@ -25,6 +25,12 @@ html, body {
   --slab-v-gap: 32px;
 }
 
+/* Let the page grow with content */
+html, body {
+  height: auto;
+  min-height: 100%;
+}
+
 body { position: relative; }
 body::before{
   content: "";
@@ -34,7 +40,7 @@ body::before{
   left: 50%;
   transform: translateX(-50%);
   width: min(calc(100% - 2 * var(--slab-h-gap)), var(--slab-max-width));
-  background: #121517;
+  background: #262829;        /* color of the slab */
   z-index: 0;                 /* behind everything else */
   box-shadow:
     0 8px 24px rgba(0,0,0,.35) inset,
@@ -308,7 +314,7 @@ h1 { margin: 0; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); }
   position: sticky;
   top: 0;
   z-index: 2;
-  background: #222729;
+  background: #4a4e4f;
   white-space: nowrap;
 }
 
