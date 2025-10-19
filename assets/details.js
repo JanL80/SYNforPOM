@@ -2,14 +2,25 @@
 (() => {
 
 
-  
-  
+
+
   /* ---------------- Configuration -------------------------------- */
   
   const ENDPOINT    = '/.netlify/functions/synthesize';
   const POPUP_WIDTH = 380;
   const OFFSET_X    = 20;
   const OFFSET_Y    = 20;
+
+
+
+
+  /* --------------- Procedure Language Input --------------------*/
+  
+  function getLanguage() {
+  const el = document.getElementById('languageInput');
+  const v = el && el.value ? el.value.trim() : '';
+  return v || 'English';                                  // default if empty or missing
+}
   
   
   
@@ -122,34 +133,30 @@
   
   /* ---------------- Fetch helper ---------------------------------- */
   
-  async function fetchRemoteDetails (record) {
-    try {
-  
-      const body = {
-        pomId    : record.pomId,
-        procedure: await getProcedure(record.procedureID)
-      };
-  
-      if (!body.procedure) {
-        return 'No synthesis information available for this POM.';
-      }
-  
-      const res = await fetch(ENDPOINT, {
-        method : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify(body)
-      });
-      const { text, error } = await res.json().catch(() => ({}));
-  
-      if (!res.ok) {
-        return `Server error ${res.status}: ${error || text || 'no details'}`;
-      }
-      return text;
-  
-    } catch (err) {
-      return `Error fetching synthesis: ${err.message}`;
-    }
+async function fetchRemoteDetails(record) {
+  try {
+    const body = {
+      pomId    : record.pomId,
+      procedure: await getProcedure(record.procedureID),
+      language : getLanguage()
+    };
+
+    if (!body.procedure) return 'No synthesis information available for this POM.';
+
+    const res = await fetch(ENDPOINT, {
+      method : 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body   : JSON.stringify(body)
+    });
+
+    const { text, error } = await res.json().catch(() => ({}));
+    if (!res.ok) return `Server error ${res.status}: ${error || text || 'no details'}`;
+    return text;
+
+  } catch (err) {
+    return `Error fetching synthesis: ${err.message}`;
   }
+}
   
   
   
