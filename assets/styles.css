@@ -35,8 +35,10 @@ html, body {
 /* scaling wrapper for small screens */
 #fitRoot {
   width: var(--design-width);
-  margin: 0 auto;
-  transform-origin: top center;
+  position: relative;
+  left: 50%;
+  margin: 0;
+  transform-origin: top left;
 }
 
 body { position: relative; }
