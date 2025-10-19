@@ -22,7 +22,7 @@ html, body {
 :root{
   --slab-max-width: 1280px;   /* width of the slab */
   --slab-h-gap: 24px;
-  --slab-v-gap: 32px;
+  --slab-v-gap: 40px;
 }
 
 /* Let the page grow with content */
