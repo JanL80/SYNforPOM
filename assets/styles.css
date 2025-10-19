@@ -28,7 +28,7 @@ html, body {
 body { position: relative; }
 body::before{
   content: "";
-  position: fixed;
+  position: absolute;
   top: var(--slab-v-gap);
   bottom: var(--slab-v-gap);
   left: 50%;
